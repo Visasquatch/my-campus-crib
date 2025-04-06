@@ -2,37 +2,91 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.openText{
+  padding-top: 1%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.open1{
+  color: #000000;
+  font-size: 250%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.open2{
+  padding-bottom: 2%;
+  color: #000000;
+  font-size: 150%;
+}
+
+.cards{
   display: flex;
-  flex-direction: column;
+  gap: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.card{
+  background-color: orange;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  padding: 5%;
+  font-size: 1em;
+  line-height: 1.4em;
+}
+
+.card header{
+  color: black;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 4%;
+}
+/**/
+.general {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgba(0, 0, 0, 0.767)
 }
 
-.App-link {
-  color: #61dafb;
+.general h2{
+  color: orange;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+

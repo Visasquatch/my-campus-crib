@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
+import Layout from './components/layout.js'
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import    Home from './home.jsx';
+import Login from './pages/login.jsx';
+import SignUp from './pages/signup.jsx';
+import UIL from './pages/uIL.jsx';
+import Detail from './pages/details.jsx';
+import  Actual_Cart  from './pages/actualCart.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Layout />} >
+    <Route path="/" element={<Home />} />
+    <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/university-of-ilorin" element={<UIL />} /> 
+        <Route path="/university-of-ilorin/:slug" element={<Detail />} />
+    </Route>
+  </Routes>
+</BrowserRouter>
   );
 }
 
