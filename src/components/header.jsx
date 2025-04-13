@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import './header.css';
 import { useSelector } from 'react-redux';
 import Login from '../pages/login';
+import Signup from '../pages/signup'
 
 function Header ({ setPage }) {
     const [showLogin, setShowLogin] = useState(false);
+    const [showSignup, setShowSignup] = useState(false);
     const [totalQuantity, setTotalQuantity] = useState(0);
 //    const [setIsModalOpen, setIsModalOpen] = useState(false);
     const carts = useSelector(store => store.cart.hostels);
@@ -32,8 +34,15 @@ function Header ({ setPage }) {
     </div>
   </div>
 )}
-
-            <Link to='signup'><button>Sign up</button></Link> 
+ <button onClick={() => setShowSignup(true)} className="signUp-button">
+        Sign up
+      </button>
+      {showSignup && (
+  <div className="modal">
+    <div className="modal-content">
+      <Signup onClose={() => setShowSignup(false)} />
+    </div>
+  </div> )}
             <div className='w-12 h-12 bg-gray-100 rounded-full flex justify-center items-center relative mt-3'>
                 <button>
             <img src="https://img.icons8.com/?size=100&id=20629&format=png&color=000000"
