@@ -8,6 +8,7 @@ import SignUp from './pages/signup.jsx';
 import UIL from './pages/uIL.jsx';
 import Detail from './pages/details.jsx';
 import  Actual_Cart  from './pages/actualCart.jsx';
+import ForgotP from './pages/forgotPassword.jsx';
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
     <Route path="/" element={<Layout />} >
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+    <Route path="/signup" element={<SignUp />} />
         <Route path="/university-of-ilorin" element={<UIL />} /> 
         <Route path="/university-of-ilorin/:slug" element={<Detail />} />
+    <Route path="/forgotPassword" element={<ForgotP />} />
     </Route>
   </Routes>
 </BrowserRouter>

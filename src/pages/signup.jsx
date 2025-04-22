@@ -19,18 +19,35 @@ const Signup = ({ onClose }) => {
   Welcome to Campus Crib
 </h2>
 
-<div className="mb-4 text-black">
+<div className="mb-4 text-black text-sm">
   <label className="block text-sm font-medium text-gray-700 mb-1">
     Country code
   </label>
   <select className="w-full border p-2 rounded">
-    <option value="+234">Nigeria (+234)</option>
-    <option value="+1">United States (+1)</option>
-    <option value="+44">United Kingdom (+44)</option>
+  <option value="+234">Nigeria (+234)</option>
+  <option value="+229">Benin (+229)</option>
+  <option value="+226">Burkina Faso (+226)</option>
+  <option value="+245">Cabo Verde (+245)</option>
+  <option value="+225">Côte d’Ivoire (+225)</option>
+  <option value="+220">Gambia (+220)</option>
+  <option value="+233">Ghana (+233)</option>
+  <option value="+224">Guinea (+224)</option>
+  <option value="+245">Guinea-Bissau (+245)</option>
+  <option value="+231">Liberia (+231)</option>
+  <option value="+223">Mali (+223)</option>
+  <option value="+227">Niger (+227)</option>
+  <option value="+221">Senegal (+221)</option>
+  <option value="+232">Sierra Leone (+232)</option>
+  <option value="+228">Togo (+228)</option>
+  <option value="+1">Canada (+1)</option>
+  <option value="+33">France (+33)</option>
+  <option value="+27">South Africa (+27)</option>
+  <option value="+44">United Kingdom (+44)</option>
+  <option value="+1">United States (+1)</option>
   </select>
 </div>
 
-<div className="mb-4">
+<div className="mb-4 text-sm">
   <input
     type="tel"
     placeholder="Phone number"
