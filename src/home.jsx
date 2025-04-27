@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBar from "./components/searchbar.jsx";
 import { Outlet } from 'react-router-dom';
-import Login from "./pages/login.jsx";
-import Signup from "./pages/signup.jsx";
 import './App.css';
 
 function Home() {

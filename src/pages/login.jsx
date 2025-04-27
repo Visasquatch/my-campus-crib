@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 import '../App.css';
 import ForgotP from "./forgotPassword";
+import { signIn } from "next-auth/react";
+
 
 
 const Login = ({ onClose }) => {
@@ -72,10 +74,10 @@ const Login = ({ onClose }) => {
 
             <p className="text-center my-3 text-gray-500 text-sm">or</p>
          
-         <button className= {socialBtn}>
-         <FaGoogle /> Continue with Google
-         </button>
- 
+            <button className={socialBtn} onClick={() => signIn("azure-ad-b2c")}>
+  <FaGoogle /> Continue with Google
+</button>
+
          <button className= {socialBtn}>
         <FaApple/> Continue with Apple
          </button>
