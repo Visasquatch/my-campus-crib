@@ -18,6 +18,6 @@ export default NextAuth({
   ],
   pages: {
     error: '/auth/error',  // Customize error page if needed
-  },
+},
+debug: true,  // Enable debug to get more info about what’s going wrong
 });
-

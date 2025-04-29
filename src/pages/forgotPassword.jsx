@@ -9,7 +9,7 @@ const ForgotP = ({ onClose }) => {
         <p className="text-sm text-gray-600 mb-4 text-center">
           We'll help you reset it soon.
         </p>
-        <button onClick={onClose} className="block mx-auto text-blue-500 text-sm">
+        <button onClick={onClose} className="block mx-auto text-orange-500 text-sm">
           ⬅ Back to Login
         </button>
       </div>
