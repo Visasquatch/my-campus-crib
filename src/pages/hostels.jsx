@@ -27,6 +27,7 @@ export const hostels = [
     contact: "+234 808 909 6132",
     email: "kikelomo.r_hall@hotmail.com",
     slug: "kikelomo-rusenwe-hall",
+    amenities: ['wifi', 'water-supply' ,'CCTV', 'kitchen', 'study-room', 'parking-space', 'reading-table', 'laundry-services', 'backup-generator']
   },
   {
     id: 2,
@@ -38,6 +39,7 @@ export const hostels = [
     contact: "+234 704 634 2937",
     email: "sanusi_hostel@gmail.com",
     slug: "sanusi-hostel",
+    amenities: ['water-supply' , 'kitchen', 'parking-space', 'reading-table', 'backup-generator']
   },
   {
     id: 3,
@@ -49,6 +51,7 @@ export const hostels = [
     contact: "+234 704 634 2937",
     email: "sanusi_hostel@gmail.com",
     slug: "sanusi-hostel2",
+    amenities: ['water-supply' ,'kitchen','parking-space', 'reading-table', 'backup-generator']
   },
   {
     id: 4,

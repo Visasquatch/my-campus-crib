@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 import '../App.css';
+import Login from "./login";
+import { Link } from "react-router-dom";
 
 const Signup = ({ onClose }) => {
   const [phone, setPhone] = useState("");
@@ -79,10 +81,10 @@ const Signup = ({ onClose }) => {
         <button className= {socialBtn}>
    <FaFacebook/>Continue with Facebook
         </button>
-
     <button onClick={onClose} className="close-btn">
   ✖
 </button>
+
 
       </div></div>
     </div>

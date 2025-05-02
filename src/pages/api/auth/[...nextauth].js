@@ -17,7 +17,7 @@ export default NextAuth({
     }),
   ],
   pages: {
-    error: '/auth/error',  // Customize error page if needed
+    error: '/auth/error', 
 },
-debug: true,  // Enable debug to get more info about what’s going wrong
+debug: true, 
 });

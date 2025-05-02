@@ -18,6 +18,7 @@ function App() {
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<SignUp />} />
+    <Route path="/cart" element={<Actual_Cart />} />
         <Route path="/university-of-ilorin" element={<UIL />} /> 
         <Route path="/university-of-ilorin/:slug" element={<Detail />} />
     <Route path="/forgotPassword" element={<ForgotP />} />

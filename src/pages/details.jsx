@@ -7,6 +7,15 @@ import { useDispatch } from "react-redux";
 import { book } from "../store/cart";
 import phoneIcon from "../assets/images/phone.png";
 import emailIcon from "../assets/images/email.png";
+import kitchen from "../assets/images/kitchen.png";
+import studying from "../assets/images/studying.png";
+import wifi from "../assets/images/wifi.png";
+import car from "../assets/images/car.png";
+import cctv from "../assets/images/cctv.png";
+import gen from "../assets/images/gen.png";
+import laundry from "../assets/images/laundry.png";
+import rTable from "../assets/images/reading table.png";
+import water from "../assets/images/water.png";
 
 const Detail = () => {
     const { slug } = useParams();
@@ -22,19 +31,29 @@ const Detail = () => {
             window.location.href = '/';
         }
     }, [slug])
-    const handleMinusQuantity = () => {
+ /*   const handleMinusQuantity = () => {
         setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
     }
     const handlePlusQuantity = () => {
         setQuantity(quantity + 1);
-    }
+    } */
     const handleBooking = () => {
         dispatch(book({
             productId: detail.id,
             quantity: quantity
         }));
     };
-    
+    const amenityIcons = {
+        wifi: wifi,
+        kitchen: kitchen,
+        CCTV: cctv,
+        'study-room': studying,
+         'parking-space': car,
+         'backup-generator': gen,
+         'laundry-services': laundry,
+         'reading-table': rTable,
+         'water-supply': water,
+      };      
     return(
         <div>
             <h2 className="text-3xl text-center mt-6">Hostel Details</h2>
@@ -56,21 +75,28 @@ const Detail = () => {
                      ₦{detail.price}
                 </p>
                 <div className="flex gap-5">
-                    <div className="flex gap-2 justify-center items-center">
-                        <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center" onClick={handleMinusQuantity}>-</button>
+                   {/*    <div className="flex gap-2 justify-center items-center">
+                     <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center" onClick={handleMinusQuantity}>-</button>
                         <span className="bg-gray-200 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center">{quantity}</span>
                         <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center" onClick={handlePlusQuantity}>+</button>
-                    </div>
-                    <button className="bg-orange-400 text-white px-7 py-3 rounded-xl shadow-2xl hover:bg-orange-600 flex gap-4" onClick={handleBooking}>
+                   </div>*/} 
+                    <button className="flex gap-5 bg-orange-400 text-white px-7 py-3 rounded-xl shadow-2xl hover:bg-orange-600 flex gap-4" onClick={handleBooking}>
                         Book</button>
                     </div>
                     <p>
                         {detail.description}
                      </p>
-                     <p className="flex"><img src={phoneIcon} alt="phoneIcon" className="w-7"/>  {detail.contact}<br />
-                     </p><p className="flex"><img src={emailIcon} alt="emailIcon" className="w-7 "/>  {detail.email}</p>
-                
-                    
+                     <p className="flex"><img src={phoneIcon} alt="phoneIcon" className="w-7 mx-5"/>  {detail.contact}
+                    <img src={emailIcon} alt="emailIcon" className="w-7 mx-3 "/>  {detail.email}</p>
+                     <h1 className="text-bold">Available:</h1>
+                     <div className="flex gap-5 flex-wrap">
+  {detail.amenities?.map((amenity, index) => (
+    <div key={index} className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-lg shadow">
+      <img src={amenityIcons[amenity]} alt={amenity} className="w-6 h-6" />
+      <span className="capitalize">{amenity.replace('-', ' ')}</span>
+    </div>
+  ))}
+</div>         
             </div>
             </div>
             </div>

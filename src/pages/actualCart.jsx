@@ -1,9 +1,12 @@
 import React from "react";
+import '../components/header.css';
 
  const Actual_Cart= () => {
-    <div>
-        Book Here
-    </div>
-};
+    return (
+      <div className="cartGeneral">
+        <h1>Book here</h1>
+      </div>
+    );
+  };
 
-export default Actual_Cart()
+export default Actual_Cart;

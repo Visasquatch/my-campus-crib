@@ -4,7 +4,7 @@ import './header.css';
 import { useSelector } from 'react-redux';
 import Login from '../pages/login';
 import Signup from '../pages/signup'
-
+import Actual_Cart from '../pages/actualCart.jsx';
 function Header ({ setPage }) {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
@@ -44,12 +44,15 @@ function Header ({ setPage }) {
     </div>
   </div> )}
             <div className='w-12 h-12 bg-gray-100 rounded-full flex justify-center items-center relative mt-3'>
-                <button>
-            <img src="https://img.icons8.com/?size=100&id=20629&format=png&color=000000"
-                 alt='cart' className='w-8'/>
-                 <span className='absolute top-2/3 right-1/2 bg-red-500 text-white text-sm
-                 w-5 h-5 rounded-full flex justify-center items-center'>{totalQuantity}</span>
-         </button>   </div></section>
+            <button>
+  <Link to="/cart">
+    <img src="https://img.icons8.com/?size=100&id=20629&format=png&color=000000"
+         alt='cart' className='w-8'/>
+    <span className='absolute top-2/3 right-1/2 bg-red-500 text-white text-sm
+    w-5 h-5 rounded-full flex justify-center items-center'>{totalQuantity}</span>
+  </Link>
+</button>
+  </div></section>
         </header>
     );
 };
