@@ -21,6 +21,8 @@ import arafims4 from "../assets/images/Arafims 4.png";
 import arafims5 from "../assets/images/Arafims 5.png";
 import moremi from "../assets/images/Moremi.png";
 import moremi2 from "../assets/images/Moremi 2.png";
+import moremi3 from "../assets/images/Moremi 3.png";
+import moremi4 from "../assets/images/Moremi 4.png";
 import ibidun from "../assets/images/Ibidun.png";
 import ibidun2 from "../assets/images/Ibidun 2.png";
 import takleema from "../assets/images/Takleema.png";
@@ -29,6 +31,11 @@ import hawa from "../assets/images/Hawa.png";
 import zapel from "../assets/images/Zapel.png";
 import zapel2 from "../assets/images/Zapel 2.png";
 import zapel3 from "../assets/images/Zapel 3.png";
+import eq from "../assets/images/Easy and Quiet.png";
+import pyramid from "../assets/images/Pyramid.png";
+import pyramid2 from "../assets/images/Pyramid 2.png";
+import pyramid3 from "../assets/images/Pyramid 3.png";
+import pyramid4 from "../assets/images/Pyramid 4.png";
 import uillogo from "../assets/images/UIL Logo.png"
 
 export const hostels = [
@@ -155,37 +162,43 @@ export const hostels = [
     id: 10,
     name: 'Easy and Quiet Hostel',
     price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
+    image: eq,
+    images: [uillogo],
     alt: "none",
     description: "Nice female hostel",
     contact: "+234 710 937 9264",
     email: "e&qhostel@yahoo.com",
     slug: "easy-and-quiet-hostel",
+    lat: 8.492960313256258,
+    lng: 4.669456862567037,
   },
   {
     id: 11,
     name: 'Charis Hostel',
     price: 190,
     image: uillogo,
-    images: [sanusi, sanusi2,],
+    images: [uillogo],
     alt: "none",
     description: "Nice female hostel",
     contact: "+234 710 937 9264",
     email: "charis_hostel@gmail.com",
     slug: "charis-hostel",
+    lat: 8.489167494757336,
+    lng: 4.671471671884074,
   },
   {
     id: 12,
     name: 'Moremi Hostel',
     price: 190,
-    image: moremi,
-    images: [moremi, moremi2],
+    image: moremi4,
+    images: [moremi, moremi4, moremi2, moremi3],
     alt: "none",
     description: "Nice female hostel",
-    contact: "+234 710 937 9264",
-    email: "moremihostel@yahoo.com",
+    contact: "+234 706 172 5009",
+    email: "moremigirls@gmail.com",
     slug: "moremi-hostel",
+    lat: 8.491756782244273,
+    lng: 4.6738731681823555,
   },
   {
     id: 13,
@@ -205,18 +218,20 @@ export const hostels = [
     name: 'Queens Hostel',
     price: 190,
     image: uillogo,
-    images: [sanusi, sanusi2,],
+    images: [uillogo],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "queens_hostel@yahoo.com",
     slug: "queens-hostel",
+    lat: 8.480292922257824,
+    lng: 4.67419913564465,
   },
   {
     id: 15,
     name: 'Sky Hostel',
     price: 190,
     image: uillogo,
-    images: [sanusi, sanusi2,],
+    images: [uillogo],
     description: "Nice male hostel",
     contact: "+234 917 394 9274",
     email: "sky_hostel@yahoo.com",
@@ -224,25 +239,29 @@ export const hostels = [
   },
   {
     id: 16,
-    name: 'Queens Hostel',
+    name: 'Scientific Hostel',
     price: 190,
     image: uillogo,
-    images: [sanusi, sanusi2,],
+    images: [uillogo],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
-    email: "queens_hostel@yahoo.com",
-    slug: "queens-hostel",
+    email: "scientific_hostel@yahoo.com",
+    slug: "scientific-hostel",
+    lat: 8.491175593756147,
+    lng: 4.674085460242562,
   },
   {
     id: 17,
     name: 'Pyramid Hostel',
     price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
+    image: pyramid2,
+    images: [pyramid, pyramid2, pyramid3, pyramid4,],
     description: "Nice male hostel",
     contact: "+234 917 394 9274",
     email: "pyramid_hostel@yahoo.com",
     slug: "pyrmaid-hostel",
+    lat: 8.480437822177715,
+    lng: 4.666630987227378,
   },
   {
     id: 18,
