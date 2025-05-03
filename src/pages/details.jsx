@@ -1,4 +1,5 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Carousel } from "react-responsive-carousel";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate  } from "react-router-dom";
@@ -88,7 +89,7 @@ const Detail = () => {
                      </p>
                      <p className="flex"><img src={phoneIcon} alt="phoneIcon" className="w-7 mx-5"/>  {detail.contact}
                     <img src={emailIcon} alt="emailIcon" className="w-7 mx-3 "/>  {detail.email}</p>
-                     <h1 className="text-bold">Available:</h1>
+                  <br/>   <h1 className="font-bold mb-3 text-2xl">Available:</h1>
                      <div className="flex gap-5 flex-wrap">
   {detail.amenities?.map((amenity, index) => (
     <div key={index} className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-lg shadow">
@@ -96,7 +97,23 @@ const Detail = () => {
       <span className="capitalize">{amenity.replace('-', ' ')}</span>
     </div>
   ))}
-</div>         
+</div>  
+<div className="mt-6">
+  <h3 className="text-2xl font-bold mb-3">Location</h3>
+  {detail.lat && detail.lng && (
+  <MapContainer center={[detail.lat, detail.lng]} zoom={16} style={{ height: '300px', width: '100%' }}>
+    <TileLayer
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attribution='&copy; OpenStreetMap contributors'
+    />
+    <Marker position={[detail.lat, detail.lng]}>
+      <Popup>{detail.name}</Popup>
+    </Marker>
+  </MapContainer>
+)}
+
+</div>
+
             </div>
             </div>
             </div>

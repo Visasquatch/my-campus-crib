@@ -1,19 +1,34 @@
 import kike from "../assets/images/Kike 1.png";
 import kike2 from "../assets/images/Kike 2.png";
+import kike3 from "../assets/images/Kike 3.png";
 import sanusi from "../assets/images/Sanusi.png";
 import sanusi2 from "../assets/images/Sanusi 2.png";
+import sanusi3 from "../assets/images/Sanusi 3.png";
+import sanusi4 from "../assets/images/Sanusi 4.png";
 import bethany from "../assets/images/Bethany.png";
 import bethany2 from "../assets/images/Bethany 2.png";
+import bethany3 from "../assets/images/Bethany 3.png";
+import bethany4 from "../assets/images/Bethany 4.png";
+import bethany5 from "../assets/images/Bethany 5.png";
+import bethany6 from "../assets/images/Bethany 6.png";
 import albanic from "../assets/images/Albanic.png";
 import albanic2 from "../assets/images/Albanic 2.png";
+import albanic3 from "../assets/images/Albanic 3.png";
 import arafims from "../assets/images/Arafims.png";
 import arafims2 from "../assets/images/Arafims 2.png";
+import arafims3 from "../assets/images/Arafims 3.png";
+import arafims4 from "../assets/images/Arafims 4.png";
+import arafims5 from "../assets/images/Arafims 5.png";
 import moremi from "../assets/images/Moremi.png";
 import moremi2 from "../assets/images/Moremi 2.png";
 import ibidun from "../assets/images/Ibidun.png";
 import ibidun2 from "../assets/images/Ibidun 2.png";
 import takleema from "../assets/images/Takleema.png";
 import takleema2 from "../assets/images/Takleema 2.png";
+import hawa from "../assets/images/Hawa.png";
+import zapel from "../assets/images/Zapel.png";
+import zapel2 from "../assets/images/Zapel 2.png";
+import zapel3 from "../assets/images/Zapel 3.png";
 import uillogo from "../assets/images/UIL Logo.png"
 
 export const hostels = [
@@ -22,11 +37,13 @@ export const hostels = [
     name: 'Kikelomo Rusenwe Hall',
     price: 190,
     image: kike,
-    images: [kike, kike2,],
+    images: [kike, kike2, kike3],
     description: "Nice male hostel",
     contact: "+234 808 909 6132",
     email: "kikelomo.r_hall@hotmail.com",
     slug: "kikelomo-rusenwe-hall",
+    lat: 8.489160404453791, 
+    lng: 4.6684200332389,
     amenities: ['wifi', 'water-supply' ,'CCTV', 'kitchen', 'study-room', 'parking-space', 'reading-table', 'laundry-services', 'backup-generator']
   },
   {
@@ -34,13 +51,15 @@ export const hostels = [
     name: 'Sanusi Hostel',
     price: 190,
     image: uillogo,
-    images: [sanusi, sanusi2,],
+    images: [ sanusi2, sanusi3, sanusi4,],                      
     description: "Nice male hostel",
     contact: "+234 704 634 2937",
     email: "sanusi_hostel@gmail.com",
-    slug: "sanusi-hostel",
+    slug: "sanusi-hostel", 
+    lat: 8.48469562852251,        
+    lng: 4.667509540633116,
     amenities: ['water-supply' , 'kitchen', 'parking-space', 'reading-table', 'backup-generator']
-  },
+  }, 
   {
     id: 3,
     name: 'Sanusi Hostel 2',
@@ -58,11 +77,13 @@ export const hostels = [
     name: 'Albanic Hostel',
     price: 190,
     image: albanic,
-    images: [albanic, albanic2],
+    images: [albanic, albanic2, albanic3,],
     description: "Nice female hostel",
     contact: "+234 813 826 0563",
     email: "hostel.albanic@gmail.com",
     slug: "albanic-hostel",
+    lat: 8.485648162339707,
+    lng: 4.669992235644696,
   },
   {
     id: 5,
@@ -74,6 +95,8 @@ export const hostels = [
     contact: "+234 716 394 7268",
     email: "ibidun.hostel@hotmail.com",
     slug: "ibidun-hostel",
+    lat: 8.48557477376253, 
+    lng: 4.670475041197359,
   },
   {
     id: 6,
@@ -85,40 +108,48 @@ export const hostels = [
     contact: "+234 738 927 9372", 
     email: "hostel_takleema@gmail.com",
     slug: "takleema-hostel",
+    lat: 8.479643887945826,
+    lng: 4.664724958391535,
   },
   {
     id: 7,
     name: 'Arafims Hostel',
     price: 190,
     image: arafims,
-    images: [arafims, arafims2],
+    images: [arafims, arafims2, arafims3, arafims4, arafims5],
     description: "Nice male hostel",
     contact: "+234 825 937 1974",
     email: "arafimshostel@gmail.com",
     slug: "arafims-hostel",
+    lat: 8.486212550766073, 
+    lng: 4.668571781113552,
   },
   {
     id: 8,
     name: 'Arafims Hostel 2',
     price: 190,
     image: uillogo,
-    images: [arafims, arafims2],
+    images: [ arafims2],
     description: "Nice male hostel",
     contact: "+234 825 937 1974",
     email: "arafimshostel@gmail.com",
     slug: "arafims-hostel2",
+    lat: 8.48072492201884, 
+    lng: 4.665310197018079,
   },
   {
     id: 9,
     name: 'Zapel Hostel',
     price: 190,
     image: uillogo,
-    images: [sanusi, sanusi2,],
+    images: [zapel, zapel2, zapel3,],
     alt: "none",
     description: "Nice male hostel",
     contact: "+234 715 439 1094",
     email: "zapelhostel@yahoo.com",
     slug: "zapel-hostel",
+    lat: 8.485278482697911,
+    lng: 4.668322076122135,
   },
   {
     id: 10,
@@ -161,11 +192,13 @@ export const hostels = [
     name: 'Bethany Hostel',
     price: 190,
     image: bethany,
-    images: [bethany, bethany2],
+    images: [bethany, bethany2, bethany3, bethany4, bethany5, bethany6],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "bethany_hostel@yahoo.com",
     slug: "bethany-hostel",
+    lat: 8.480027522404667, 
+    lng: 4.66828592215215,
   },
   {
     id: 14,
@@ -215,12 +248,14 @@ export const hostels = [
     id: 18,
     name: 'Hawa Hostel',
     price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
+    image: hawa,
+    images: [uillogo],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "hostel.hawa@gmail.com",
     slug: "hawa-hostel",
+    lat: 8.484962885443137, 
+    lng: 4.669716150988018,
   },
   {
     id: 19,
