@@ -17,6 +17,9 @@ import gen from "../assets/images/gen.png";
 import laundry from "../assets/images/laundry.png";
 import rTable from "../assets/images/reading table.png";
 import water from "../assets/images/water.png";
+import restaurant from "../assets/images/restaurant.png";
+import shuttle from "../assets/images/shuttle.png";
+import solar from "../assets/images/solar.png";
 
 const Detail = () => {
     const { slug } = useParams();
@@ -54,6 +57,9 @@ const Detail = () => {
          'laundry-services': laundry,
          'reading-table': rTable,
          'water-supply': water,
+         'restaurant': restaurant,
+         'shuttle-bus': shuttle,
+         'solar-power-support' : solar,
       };      
     return(
         <div>

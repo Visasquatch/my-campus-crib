@@ -85,6 +85,8 @@ export const hostels = [
     contact: "+234 704 634 2937",
     email: "sanusi_hostel@gmail.com",
     slug: "sanusi-hostel2",
+    lat: 8.48469562852251,        
+    lng: 4.667509540633116,
     amenities: ['water-supply' ,'kitchen','parking-space', 'reading-table', 'backup-generator']
   },
   {
@@ -99,6 +101,7 @@ export const hostels = [
     slug: "albanic-hostel",
     lat: 8.485648162339707,
     lng: 4.669992235644696,
+    amenities: ['water-supply' ,]
   },
   {
     id: 5,
@@ -112,6 +115,7 @@ export const hostels = [
     slug: "ibidun-hostel",
     lat: 8.48557477376253, 
     lng: 4.670475041197359,
+    amenities: ['water-supply' ,]
   },
   {
     id: 6,
@@ -125,6 +129,7 @@ export const hostels = [
     slug: "takleema-hostel",
     lat: 8.479643887945826,
     lng: 4.664724958391535,
+    amenities: ['water-supply', 'wifi', 'backup-generator', 'study-room', 'parking-space', 'restaurant', 'shuttle']
   },
   {
     id: 7,
@@ -138,6 +143,7 @@ export const hostels = [
     slug: "arafims-hostel",
     lat: 8.486212550766073, 
     lng: 4.668571781113552,
+    amenities: ['water-supply', 'reading-table', 'restaurant', 'parking-space']
   },
   {
     id: 8,
@@ -179,6 +185,7 @@ export const hostels = [
     slug: "easy-and-quiet-hostel",
     lat: 8.492960313256258,
     lng: 4.669456862567037,
+    amenities: ['water-supply', 'wifi', 'reading-table']
   },
   {
     id: 11,
@@ -207,6 +214,7 @@ export const hostels = [
     slug: "moremi-hostel",
     lat: 8.491756782244273,
     lng: 4.6738731681823555,
+    amenities: ['water-supply', 'study-room', 'reading-table']
   },
   {
     id: 13,
@@ -244,6 +252,7 @@ export const hostels = [
     contact: "+234 917 394 9274",
     email: "sky_hostel@yahoo.com",
     slug: "sky-hostel",
+    amenities: ['water-supply', 'solar',]
   },
   {
     id: 16,
@@ -270,6 +279,7 @@ export const hostels = [
     slug: "pyrmaid-hostel",
     lat: 8.480437822177715,
     lng: 4.666630987227378,
+    amenities: ['water-supply', 'CCTV', 'backup-generator']
   },
   {
     id: 18,
@@ -348,6 +358,7 @@ export const hostels = [
     slug: "atlantic-heights-hostel",
     lat: 8.492143104485312,
     lng: 4.670685056540782,
+    amenities: ['water-supply', 'wifi', 'study-room', 'reading-table', 'parking-space']
   },
 
 ];
