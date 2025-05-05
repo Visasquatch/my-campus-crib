@@ -36,6 +36,14 @@ import pyramid from "../assets/images/Pyramid.png";
 import pyramid2 from "../assets/images/Pyramid 2.png";
 import pyramid3 from "../assets/images/Pyramid 3.png";
 import pyramid4 from "../assets/images/Pyramid 4.png";
+import gulf from "../assets/images/Gulf.png";
+import mubarak from "../assets/images/Mubarak.png";
+import mubarak2 from "../assets/images/Mubarak 2.png";
+import robiat from "../assets/images/Robiat.png";
+import robiat2 from "../assets/images/Robiat 2.png";
+import atlantic from "../assets/images/Atlantic.png";
+import atlantic2 from "../assets/images/Atlantic 2.png";
+import atlantic3 from "../assets/images/Atlantic 3.png";
 import uillogo from "../assets/images/UIL Logo.png"
 
 export const hostels = [
@@ -280,12 +288,14 @@ export const hostels = [
     id: 19,
     name: 'Gulf Pearl Hostel',
     price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
+    image: gulf,
+    images: [gulf,],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "hostel.gulf.pearl@gmail.com",
     slug: "gulf-pearl-hostel",
+    lat: 8.49112202634969,
+    lng: 4.669749070033251,
   },
   {
     id: 20,
@@ -297,50 +307,47 @@ export const hostels = [
     contact: "+234 917 394 9274",
     email: "hostel.rubiks@gmail.com",
     slug: "rubiks-hostel",
+    lat: 8.48871416282642,
+    lng: 4.67090549463098,
   },
   {
     id: 21,
     name: 'El-mubarak Hostel',
     price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
+    image: mubarak,
+    images: [mubarak2],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "el-mubarak_hostel@gmail.com",
     slug: "el-mubarak-hostel",
+    lat: 8.490639360265577,
+    lng: 4.669720710510651,
   },
   {
     id: 22,
     name: 'Robiat Ajike Hostel',
     price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
+    image: robiat,
+    images: [robiat, robiat2,],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "robiat.ajike.hostel@gmail.com",
     slug: "robiat-ajike-hostel",
+    lat: 8.48628053031834,
+    lng: 4.6696248853765425,
   },
   {
     id: 23,
-    name: 'Trunil Hostel',
-    price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
-    description: "Nice female hostel",
-    contact: "+234 917 394 9274",
-    email: "trunil_hostel@gmail.com",
-    slug: "trunil-hostel",
-  },
-  {
-    id: 24,
     name: 'Atlantic Heights Hostel',
     price: 190,
-    image: uillogo,
-    images: [sanusi, sanusi2,],
+    image: atlantic,
+    images: [atlantic, atlantic2, atlantic3,],
     description: "Nice female hostel",
-    contact: "+234 917 394 9274",
-    email: "atlantic_heights_hostel@gmail.com",
+    contact: "+234 802 052 2531",
+    email: "info@atlanticheights.space",
     slug: "atlantic-heights-hostel",
+    lat: 8.492143104485312,
+    lng: 4.670685056540782,
   },
 
 ];

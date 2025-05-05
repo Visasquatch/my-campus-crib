@@ -61,10 +61,21 @@ const Detail = () => {
             <button onClick={() => navigate('/university-of-ilorin')} className="bg-orange-200 p-2 rounded-lg ml-5 hover:bg-orange-400">⬅</button>
             <div className="grid grid-cols-2 gap-5 mt-5 mt-6">
             <div className="ml-5">
-                    <Carousel>
+                    <Carousel
+                     renderThumbs={() =>
+                        detail.images?.map((image, index) => (
+                          <img
+                            key={index}
+                            src={image}
+                            alt={`thumb-${index}`}
+                            className="h-20 w-28 object-cover rounded-md"
+                          />
+                        ))
+                      }
+                    >
                         {detail.images?.map((image, index) => (
                             <div key={index}>
-                                <img src={image} alt={`hostelImage ${index + 1}`} className="w-full"/>
+                                <img src={image} alt={`hostelImage ${index + 1}`} className="w-full h-[500px] object-cover rounded-lg"/>
                             </div>
                         ))}
                     </Carousel>
