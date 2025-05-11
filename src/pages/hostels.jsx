@@ -63,8 +63,8 @@ export const hostels = [
     lng: 4.6684200332389,
     amenities: ['water-supply' ,'CCTV', 'study-room', 'parking-space', 'reading-table', 'laundry-services', 'backup-generator', 'solar-power-support', 'restaurant', 'tuckshop'],
     roomTypes: [
-      { type: '2 in a Room', price: 180 },
-      { type: '3 in a Room', price: 250 },
+      { type: '2 in a Room', price: "180" },
+      { type: '3 in a Room', price: "250" },
       { type: '4 in a Room', price: "198,000" }
     ]
   },
@@ -82,7 +82,7 @@ export const hostels = [
     lng: 4.667509540633116,
     amenities: ['water-supply' ,  'parking-space', 'reading-table', 'backup-generator', 'CCTV'],
     roomTypes: [
-      { type: '2 in a Room', price: 180 },
+      { type: '2 in a Room', price: "180" },
       { type: '4 in a Room', price: "189,000" }
     ]
   }, 
@@ -100,7 +100,7 @@ export const hostels = [
     lng: 4.667509540633116,
     amenities: ['water-supply' ,'parking-space', 'reading-table', 'backup-generator'],
     roomTypes: [
-      { type: '2 in a Room', price: 180 },
+      { type: '2 in a Room', price: "180" },
       { type: '4 in a Room', price: "180,000" }
     ]
   },
@@ -118,8 +118,8 @@ export const hostels = [
     lng: 4.669992235644696,
     amenities: ['water-supply', 'backup-generator', 'reading-table'],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
-      { type: '2 in a Room', price: 180 },
+      { type: 'Single Room', price: "250 "},
+      { type: '2 in a Room', price: "180" },
       { type: '3 in a Room', price: "275,000"},
       { type: '4 in a Room', price: "190" }
     ]
@@ -136,7 +136,13 @@ export const hostels = [
     slug: "ibidun-hostel",
     lat: 8.48557477376253, 
     lng: 4.670475041197359,
-    amenities: ['water-supply' ,]
+    amenities: ['water-supply' ,],
+    roomTypes: [
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180" },
+      { type: '3 in a Room', price: "275"},
+      { type: '4 in a Room', price: "190" }
+    ]
   },
   {
     id: 6,
@@ -153,7 +159,7 @@ export const hostels = [
     amenities: ['water-supply', 'tuckshop', 'wifi', 'backup-generator', 'study-room', 'parking-space', 'restaurant', 'shuttle-bus', 'reading-table', 'laundry-services'],
     roomTypes: [
       { type: '2 in a Room', price: "225,000" },
-      { type: '3 in a Room', price: 180 },
+      { type: '3 in a Room', price:" 180 "},
       { type: '4 in a Room', price: "190,000" }
     ]
   },
@@ -171,8 +177,8 @@ export const hostels = [
     lng: 4.668571781113552,
     amenities: ['water-supply', 'reading-table', 'restaurant', 'parking-space', 'backup-generator', 'wifi', 'CCTV'],
     roomTypes: [
-      { type: '2 in a Room', price: 180 },
-      { type: '3 in a Room', price: 180 },
+      { type: '2 in a Room', price: "180" },
+      { type: '3 in a Room', price: "180 "},
       { type: '4 in a Room', price: "196,000" }
     ]
   },
@@ -190,8 +196,8 @@ export const hostels = [
     lng: 4.665310197018079,
     amenities: ['water-supply', 'wifi', 'parking-space'],
     roomTypes: [
-      { type: '2 in a Room', price: 180 },
-      { type: '3 in a Room', price: 180 },
+      { type: '2 in a Room', price: "180" },
+      { type: '3 in a Room', price: "180" },
       { type: '4 in a Room', price: "196,000" }
     ]
   },
@@ -210,8 +216,8 @@ export const hostels = [
     lng: 4.668322076122135,
     amenities: ['water-supply', 'reading-table', ],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
-      { type: '2 in a Room', price: 180 },
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180" },
       { type: '4 in a Room', price: "195,000" }
     ]
   },
@@ -230,9 +236,9 @@ export const hostels = [
     lng: 4.669456862567037,
     amenities: ['water-supply', 'wifi', 'reading-table', 'backup-generator', 'tuckshop' ] ,
     roomTypes: [
-      { type: 'Single Room', price: 250 },
-      { type: '2 in a Room', price: 180 },
-      { type: '3 in a Room', price: 180 },
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180" },
+      { type: '3 in a Room', price: "180" },
       { type: '4 in a Room', price: "196,500" }
     ]
   },
@@ -251,9 +257,9 @@ export const hostels = [
     lng: 4.671471671884074,
     amenities: ['water-supply', "CCTV", "reading-table", "study-room"],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
-      { type: '2 in a Room', price: 180 },
-      { type: '3 in a Room', price: 180 },
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180" },
+      { type: '3 in a Room', price: "180" },
       { type: '4 in a Room', price: "175,000" }
     ]
   },
@@ -272,7 +278,7 @@ export const hostels = [
     lng: 4.6738731681823555,
     amenities: ['water-supply', 'study-room', 'reading-table'],
     roomTypes: [
-      { type: '2 in a Room', price: 180 },
+      { type: '2 in a Room', price: "180" },
       { type: '3 in a Room', price: "205,000"},
       { type: '4 in a Room', price: "190" }
     ]
@@ -291,7 +297,7 @@ export const hostels = [
     lng: 4.66828592215215,
     amenities: ['water-supply', 'backup-generator', 'CCTV', 'study-room', 'reading-table', 'parking-space', 'restaurant'],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
+      { type: 'Single Room', price: "250"},
       { type: '2 in a Room', price: "353,000" },
       { type: '4 in a Room', price: "218,000" }
     ]
@@ -308,7 +314,12 @@ export const hostels = [
     slug: "queens-hostel",
     lat: 8.480292922257824,
     lng: 4.67419913564465,
-    amenities: ['water-supply',]
+    amenities: ['water-supply',],
+    roomTypes: [
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180"},
+      { type: '4 in a Room', price: "219" }
+    ]
   },
   {
     id: 15,
@@ -322,8 +333,8 @@ export const hostels = [
     slug: "sky-hostel",
     amenities: ['water-supply', 'solar-power-support',],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
-      { type: '2 in a Room', price: 180 },
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180"},
       { type: '4 in a Room', price: "219,000" }
     ]
   },
@@ -341,7 +352,7 @@ export const hostels = [
     lng: 4.674085460242562,
     amenities: ['water-supply', 'backup-generator'],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
+      { type: 'Single Room', price: "250" },
       { type: '2 in a Room', price: "160,000" },
       { type: '4 in a Room', price: "190" }
     ]
@@ -360,7 +371,7 @@ export const hostels = [
     lng: 4.666630987227378,
     amenities: ['water-supply', 'CCTV', 'backup-generator'],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
+      { type: 'Single Room', price: "250" },
       { type: '2 in a Room', price: "280,000" },
       { type: '4 in a Room', price: "190" }
     ]
@@ -370,7 +381,7 @@ export const hostels = [
     name: 'Hawa Hostel',
     price: 190,
     image: hawa,
-    images: hawa, hawa2,
+    images: [hawa, hawa2,],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "hostel.hawa@gmail.com",
@@ -379,7 +390,7 @@ export const hostels = [
     lng: 4.669716150988018,
     amenities: ['water-supply', 'backup-generator', 'restaurant'],
     roomTypes: [
-      { type: '2 in a Room', price: 180 },
+      { type: '2 in a Room', price: "180" },
       { type: '4 in a Room', price: "189,000" }
     ]
   },
@@ -397,8 +408,8 @@ export const hostels = [
     lng: 4.669749070033251,
     amenities: ['water-supply',],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
-      { type: '2 in a Room', price: 180 },
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180" },
       { type: '4 in a Room', price: "201,000" }
     ]
   },
@@ -414,7 +425,12 @@ export const hostels = [
     slug: "rubiks-hostel",
     lat: 8.48871416282642,
     lng: 4.67090549463098,
-    amenities: ['water-supply',]
+    amenities: ['water-supply',],
+    roomTypes: [
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180"},
+      { type: '4 in a Room', price: "219,000" }
+    ]
   },
   {
     id: 21,
@@ -428,7 +444,12 @@ export const hostels = [
     slug: "el-mubarak-hostel",
     lat: 8.490639360265577,
     lng: 4.669720710510651,
-    amenities: ['water-supply',]
+    amenities: ['water-supply',],
+    roomTypes: [
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180"},
+      { type: '4 in a Room', price: "219,000" }
+    ]
   },
   {
     id: 22,
@@ -442,7 +463,12 @@ export const hostels = [
     slug: "robiat-ajike-hostel",
     lat: 8.48628053031834,
     lng: 4.6696248853765425,
-    amenities: ['water-supply',]
+    amenities: ['water-supply',],
+    roomTypes: [
+      { type: 'Single Room', price: "250" },
+      { type: '2 in a Room', price: "180"},
+      { type: '4 in a Room', price: "219,000" }
+    ]
   },
   {
     id: 23,
@@ -458,7 +484,7 @@ export const hostels = [
     lng: 4.670685056540782,
     amenities: ['water-supply', 'wifi', 'study-room', 'reading-table', 'parking-space', 'laundry-services', 'tuckshop'],
     roomTypes: [
-      { type: 'Single Room', price: 250 },
+      { type: 'Single Room', price: "250" },
       { type: '2 in a Room', price: "220,000" },
       { type: '4 in a Room', price: "210,000" }
     ]

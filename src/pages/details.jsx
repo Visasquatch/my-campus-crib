@@ -21,32 +21,75 @@ import restaurant from "../assets/images/restaurant.png";
 import shuttle from "../assets/images/shuttle.png";
 import solar from "../assets/images/solar.png";
 import buttery from "../assets/images/shop.png";
+import heartOutline from "../assets/images/heart outline.png"
+import heart from "../assets/images/heart.png"
+console.log('Hostels array:', hostels);
 
 const Detail = () => {
     const { slug } = useParams();
-    const [detail, setDetail]= useState([]);
+    console.log(slug);
+    const [detail, setDetail] = useState(null);
     const navigate = useNavigate(); 
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
     const [selectedRoomType, setSelectedRoomType] = useState(null);
+    const [savedHostels, setSavedHostels] = useState([]);
+    const isSaved = detail ? savedHostels.includes(detail.id) : false;
+    const currentIndex = hostels.findIndex(h => h.slug === slug);
+    const handleNext = () => {
+      const nextIndex = (currentIndex + 1) % hostels.length;
+      navigate(`/university-of-ilorin/${hostels[nextIndex].slug}`);
+    };
+    
+    const handlePrev = () => {
+      const prevIndex = (currentIndex - 1 + hostels.length) % hostels.length;
+      navigate(`/university-of-ilorin/${hostels[prevIndex].slug}`);
+    };
+    
+
+useEffect(() => {
+  console.log('Slug param:', slug);
+  console.log('Hostels length:', hostels.length);
+
+  if (!hostels || hostels.length === 0) return;
+
+  const findDetail = hostels.find(hostel => hostel.slug === slug);
+  if (findDetail) {
+    setDetail(findDetail);
+    setSelectedRoomType(findDetail.roomTypes?.[0] || null);
+  } else {
+    window.location.href = '/';
+  }
+}, [slug, hostels]);
+
     useEffect(() => {
-        const findDetail = hostels.filter(hostel => hostel.slug ===  slug);
-        if(findDetail.length > 0){
-            setDetail(findDetail[0]);
-        }else{
-            window.location.href = '/';
-        }
-        if (findDetail.length > 0) {
-          setDetail(findDetail[0]);
-          setSelectedRoomType(findDetail[0].roomTypes?.[0] || null); // default to first type
-        }        
-    }, [slug])
+      const stored = JSON.parse(localStorage.getItem('savedHostels')) || [];
+      setSavedHostels(stored);
+    }, []);
+    
+    useEffect(() => {
+      localStorage.setItem('savedHostels', JSON.stringify(savedHostels));
+    }, [savedHostels]);
+    
  /*   const handleMinusQuantity = () => {
         setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
     }
     const handlePlusQuantity = () => {
         setQuantity(quantity + 1);
-    } */
+    } 
+        ................
+        
+
+    */
+        const toggleSaveHostel = () => {
+          if (savedHostels.includes(detail.id)) {
+            setSavedHostels(savedHostels.filter(id => id !== detail.id));
+          } else {
+            setSavedHostels([...savedHostels, detail.id]);
+          }
+        };
+        
+        
         const handleBooking = () => {
           dispatch(book({
             productId: detail.id,
@@ -68,15 +111,24 @@ const Detail = () => {
          'shuttle-bus': shuttle,
          'solar-power-support' : solar,
          'tuckshop' : buttery,
-      };      
+      };   
+      if (!detail) {
+        return <div className="text-center mt-10 text-xl">Loading hostel details...</div>;
+      }      
     return(
         <div>
+          
             <h2 className="text-3xl text-center mt-6">Hostel Details</h2>
-            <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅</button>
+            <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Back</button>
+            <div className="flex gap-5 mt-4">
+  <button onClick={handlePrev} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Prev</button>
+  <button onClick={handleNext} className="bg-[#FFA500] p-2 rounded-lg ml- hover:bg-orange-400">Next ➡</button>
+</div>
+
             <div className="grid grid-cols-2 gap-5 mt-5 mt-6">
             <div className="ml-5">
                     <Carousel
-                     renderThumbs={() =>
+                     renderThumbs={() =>(
                         detail.images?.map((image, index) => (
                           <img
                             key={index}
@@ -85,7 +137,7 @@ const Detail = () => {
                             className="h-20 w-28 object-cover rounded-md"
                           />
                         ))
-                      }
+)}
                     >
                         {detail.images?.map((image, index) => (
                             <div key={index}>
@@ -96,7 +148,38 @@ const Detail = () => {
 
                 </div>
             <div className="flex flex-col gap-5  ml-20">
-                <h1 className="text-4xl uppercase font-bold">{detail.name}</h1>
+            <div className="flex items-center gap-3">
+            {hostels.map((hostel) => (
+  <div key={hostel.id}>
+  </div>
+))}
+<div className="absolute flex items-center justify-between py-2 my-6 mb-2">
+  {detail && (
+    <div className="flex items-center space-x-6"> 
+      <h1 className="text-4xl uppercase font-bold">{detail.name}</h1>
+  <button className="px-6 py-2"
+  onClick={() => {
+    toggleSaveHostel();
+    const icon = document.getElementById(`heart-icon-${detail.id}`);
+    if (icon) {
+      icon.classList.add("pop");
+      setTimeout(() => {
+        icon.classList.remove("pop");
+      }, 300);
+    }
+  }}
+>
+    <img
+      id={`heart-icon-${detail.id}`}
+      src={isSaved  ? heart : heartOutline}
+      alt="save icon"
+      className="w-8 h-8"
+    />
+  </button>
+  </div>
+  )}
+</div></div>
+
                 {detail.roomTypes && (
   <div className="flex items-center gap-5">
     <h2 className="text-xl font-semibold mb-2">Room Options</h2>
@@ -118,8 +201,11 @@ const Detail = () => {
 )}
 
 <p className="font-bold text-3xl">
-  {selectedRoomType ? `₦${selectedRoomType.price}` : 'Select a room type'}
+  {selectedRoomType && selectedRoomType.price 
+    ? `₦${selectedRoomType.price}`
+    : 'Select a room type'}
 </p>
+
 
 
                 <div className="flex gap-5">
