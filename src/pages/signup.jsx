@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 import '../App.css';
 import Login from "./login";

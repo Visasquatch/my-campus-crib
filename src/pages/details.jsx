@@ -20,6 +20,7 @@ import water from "../assets/images/water.png";
 import restaurant from "../assets/images/restaurant.png";
 import shuttle from "../assets/images/shuttle.png";
 import solar from "../assets/images/solar.png";
+import buttery from "../assets/images/shop.png";
 
 const Detail = () => {
     const { slug } = useParams();
@@ -27,6 +28,7 @@ const Detail = () => {
     const navigate = useNavigate(); 
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
+    const [selectedRoomType, setSelectedRoomType] = useState(null);
     useEffect(() => {
         const findDetail = hostels.filter(hostel => hostel.slug ===  slug);
         if(findDetail.length > 0){
@@ -34,6 +36,10 @@ const Detail = () => {
         }else{
             window.location.href = '/';
         }
+        if (findDetail.length > 0) {
+          setDetail(findDetail[0]);
+          setSelectedRoomType(findDetail[0].roomTypes?.[0] || null); // default to first type
+        }        
     }, [slug])
  /*   const handleMinusQuantity = () => {
         setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
@@ -41,11 +47,12 @@ const Detail = () => {
     const handlePlusQuantity = () => {
         setQuantity(quantity + 1);
     } */
-    const handleBooking = () => {
-        dispatch(book({
+        const handleBooking = () => {
+          dispatch(book({
             productId: detail.id,
-            quantity: quantity
-        }));
+            quantity: quantity,
+            roomType: selectedRoomType?.type
+          }));          
     };
     const amenityIcons = {
         wifi: wifi,
@@ -60,11 +67,12 @@ const Detail = () => {
          'restaurant': restaurant,
          'shuttle-bus': shuttle,
          'solar-power-support' : solar,
+         'tuckshop' : buttery,
       };      
     return(
         <div>
             <h2 className="text-3xl text-center mt-6">Hostel Details</h2>
-            <button onClick={() => navigate('/university-of-ilorin')} className="bg-orange-200 p-2 rounded-lg ml-5 hover:bg-orange-400">⬅</button>
+            <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅</button>
             <div className="grid grid-cols-2 gap-5 mt-5 mt-6">
             <div className="ml-5">
                     <Carousel
@@ -89,18 +97,54 @@ const Detail = () => {
                 </div>
             <div className="flex flex-col gap-5  ml-20">
                 <h1 className="text-4xl uppercase font-bold">{detail.name}</h1>
-                <p className="font-bold text-3xl">
-                     ₦{detail.price}
-                </p>
+                {detail.roomTypes && (
+  <div className="flex items-center gap-5">
+    <h2 className="text-xl font-semibold mb-2">Room Options</h2>
+    <select
+      value={selectedRoomType?.type}
+      onChange={(e) => {
+        const selected = detail.roomTypes.find(rt => rt.type === e.target.value);
+        setSelectedRoomType(selected);
+      }}
+      className="border p-2 rounded-lg bg-[#FFA500]"
+    >
+      {detail.roomTypes.map((room, index) => (
+        <option key={index} value={room.type}>
+          {room.type}
+        </option>
+      ))}
+    </select>
+  </div>
+)}
+
+<p className="font-bold text-3xl">
+  {selectedRoomType ? `₦${selectedRoomType.price}` : 'Select a room type'}
+</p>
+
+
                 <div className="flex gap-5">
                    {/*    <div className="flex gap-2 justify-center items-center">
                      <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center" onClick={handleMinusQuantity}>-</button>
                         <span className="bg-gray-200 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center">{quantity}</span>
                         <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center" onClick={handlePlusQuantity}>+</button>
                    </div>*/} 
-                    <button className="flex gap-5 bg-orange-400 text-white px-7 py-3 rounded-xl shadow-2xl hover:bg-orange-600 flex gap-4" onClick={handleBooking}>
+                    <button className="flex items-center gap-5 bg-orange-400 text-white px-7 py-3 rounded-xl shadow-2xl hover:bg-orange-600 flex gap-4" onClick={handleBooking}>
                         Book</button>
                     </div>
+                    
+                    {/* To make Book button and price same line
+                    <div className="flex items-center gap-5">
+  <p className="font-bold text-3xl">
+    {selectedRoomType ? `₦${selectedRoomType.price}` : 'Pick a room'}
+  </p>
+  <button
+    className="bg-orange-400 text-white mx-16 px-7 py-3 my-7 rounded-xl shadow-2xl hover:bg-orange-600"
+    onClick={handleBooking}
+  >
+    Book
+  </button>
+</div> */}
+                    <br/>
                     <p>
                         {detail.description}
                      </p>
