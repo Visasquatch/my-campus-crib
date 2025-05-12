@@ -36,6 +36,7 @@ const Detail = () => {
     const [savedHostels, setSavedHostels] = useState([]);
     const isSaved = detail ? savedHostels.includes(detail.id) : false;
     const currentIndex = hostels.findIndex(h => h.slug === slug);
+ 
     const handleNext = () => {
       const nextIndex = (currentIndex + 1) % hostels.length;
       navigate(`/university-of-ilorin/${hostels[nextIndex].slug}`);
@@ -96,7 +97,7 @@ useEffect(() => {
             quantity: quantity,
             roomType: selectedRoomType?.type
           }));          
-    };
+    };  
     const amenityIcons = {
         wifi: wifi,
         kitchen: kitchen,
@@ -120,9 +121,9 @@ useEffect(() => {
           
             <h2 className="text-3xl text-center mt-6">Hostel Details</h2>
             <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Back</button>
-            <div className="flex gap-5 mt-4">
-  <button onClick={handlePrev} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Prev</button>
-  <button onClick={handleNext} className="bg-[#FFA500] p-2 rounded-lg ml- hover:bg-orange-400">Next ➡</button>
+            <div className="flex justify-between items-center mt-4 px-5">
+  <button onClick={handlePrev} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400">⬅ Prev </button>
+  <button onClick={handleNext} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400"> Next ➡</button>
 </div>
 
             <div className="grid grid-cols-2 gap-5 mt-5 mt-6">
@@ -178,7 +179,7 @@ useEffect(() => {
   </button>
   </div>
   )}
-</div></div>
+</div></div><br/>
 
                 {detail.roomTypes && (
   <div className="flex items-center gap-5">

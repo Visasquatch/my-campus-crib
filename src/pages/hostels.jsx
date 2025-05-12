@@ -52,6 +52,7 @@ export const hostels = [
   {
     id: 1,
     name: 'Kikelomo Rusenwe Hall',
+    gender: "male", 
     price: 190,
     image: kike,
     images: [kike, kike2, kike3],
@@ -66,11 +67,12 @@ export const hostels = [
       { type: '2 in a Room', price: "180" },
       { type: '3 in a Room', price: "250" },
       { type: '4 in a Room', price: "198,000" }
-    ]
+    ],
   },
   {
     id: 2,
     name: 'Sanusi Hostel',
+    gender: "male",
     price: 190,
     image: uillogo,
     images: [ sanusi2, sanusi3, sanusi4,],                      
@@ -89,6 +91,7 @@ export const hostels = [
   {
     id: 3,
     name: 'Sanusi Hostel 2',
+    gender: "male",
     price: 190,
     image: sanusi,
     images: [sanusi, sanusi2,],
@@ -107,6 +110,7 @@ export const hostels = [
   {
     id: 4,
     name: 'Albanic Hostel',
+    gender: "female",
     price: 190,
     image: albanic,
     images: [albanic, albanic2, albanic3,],
@@ -127,6 +131,7 @@ export const hostels = [
   {
     id: 5,
     name: 'Ibidun Hostel',
+    gender: "female",
     price: 190,
     image: ibidun,
     images: [ibidun, ibidun2],
@@ -147,6 +152,7 @@ export const hostels = [
   {
     id: 6,
     name: 'Takleema Hostel',
+    gender: "male",
     price: 190,
     image: takleema,
     images: [takleema, takleema2],
@@ -166,6 +172,7 @@ export const hostels = [
   {
     id: 7,
     name: 'Arafims Hostel',
+    gender: "male",
     price: 190,
     image: arafims,
     images: [arafims, arafims2, arafims3, arafims4, arafims5],
@@ -185,6 +192,7 @@ export const hostels = [
   {
     id: 8,
     name: 'Arafims Hostel 2',
+    gender: "male",
     price: 190,
     image: uillogo,
     images: [ arafims2],
@@ -204,6 +212,7 @@ export const hostels = [
   {
     id: 9,
     name: 'Zapel Hostel',
+    gender: "male",
     price: 190,
     image: uillogo,
     images: [zapel, zapel2, zapel3,],
@@ -224,6 +233,7 @@ export const hostels = [
   {
     id: 10,
     name: 'Easy and Quiet Hostel',
+    gender: "female",
     price: 190,
     image: eq,
     images: [uillogo],
@@ -245,6 +255,7 @@ export const hostels = [
   {
     id: 11,
     name: 'Charis Hostel',
+    gender: "female",
     price: 190,
     image: uillogo,
     images: [uillogo],
@@ -266,6 +277,7 @@ export const hostels = [
   {
     id: 12,
     name: 'Moremi Hostel',
+    gender: "female",
     price: 190,
     image: moremi4,
     images: [moremi, moremi4, moremi2, moremi3],
@@ -286,6 +298,7 @@ export const hostels = [
   {
     id: 13,
     name: 'Bethany Hostel',
+    gender: "female",
     price: 190,
     image: bethany,
     images: [bethany, bethany2, bethany3, bethany4, bethany5, bethany6],
@@ -305,6 +318,7 @@ export const hostels = [
   {
     id: 14,
     name: 'Queens Hostel',
+    gender: "female",
     price: 190,
     image: uillogo,
     images: [uillogo],
@@ -324,6 +338,7 @@ export const hostels = [
   {
     id: 15,
     name: 'Sky Hostel',
+    gender: "male",
     price: 190,
     image: uillogo,
     images: [uillogo],
@@ -341,6 +356,7 @@ export const hostels = [
   {
     id: 16,
     name: 'Scientific Hostel',
+    gender: "female",
     price: 190,
     image: uillogo,
     images: [uillogo],
@@ -360,6 +376,7 @@ export const hostels = [
   {
     id: 17,
     name: 'Pyramid Hostel',
+    gender: "male",
     price: 190,
     image: pyramid2,
     images: [pyramid, pyramid2, pyramid3, pyramid4,],
@@ -379,6 +396,7 @@ export const hostels = [
   {
     id: 18,
     name: 'Hawa Hostel',
+    gender: "female",
     price: 190,
     image: hawa,
     images: [hawa, hawa2,],
@@ -397,6 +415,7 @@ export const hostels = [
   {
     id: 19,
     name: 'Gulf Pearl Hostel',
+    gender: "female",
     price: 190,
     image: gulf,
     images: [gulf,],
@@ -416,6 +435,7 @@ export const hostels = [
   {
     id: 20,
     name: 'Rubiks Hostel',
+    gender: "female",
     price: 190,
     image: uillogo,
     images: [uillogo],
@@ -435,6 +455,7 @@ export const hostels = [
   {
     id: 21,
     name: 'El-mubarak Hostel',
+    gender: "female",
     price: 190,
     image: mubarak,
     images: [mubarak2],
@@ -454,6 +475,7 @@ export const hostels = [
   {
     id: 22,
     name: 'Robiat Ajike Hostel',
+    gender: "female",
     price: 190,
     image: robiat,
     images: [robiat, robiat2,],
@@ -473,6 +495,7 @@ export const hostels = [
   {
     id: 23,
     name: 'Atlantic Heights Hostel',
+    gender: "female",
     price: 190,
     image: atlantic,
     images: [atlantic, atlantic2, atlantic3, atlantic4,],
