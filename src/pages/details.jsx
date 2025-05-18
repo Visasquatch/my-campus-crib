@@ -22,8 +22,11 @@ import shuttle from "../assets/images/shuttle.png";
 import solar from "../assets/images/solar.png";
 import buttery from "../assets/images/shop.png";
 import heartOutline from "../assets/images/heart outline.png"
+import starOutline from "../assets/images/star Outline.png"
+import star from "../assets/images/star.png"
 import heart from "../assets/images/heart.png"
 console.log('Hostels array:', hostels);
+
 
 const Detail = () => {
     const { slug } = useParams();
@@ -72,16 +75,6 @@ useEffect(() => {
       localStorage.setItem('savedHostels', JSON.stringify(savedHostels));
     }, [savedHostels]);
     
- /*   const handleMinusQuantity = () => {
-        setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
-    }
-    const handlePlusQuantity = () => {
-        setQuantity(quantity + 1);
-    } 
-        ................
-        
-
-    */
         const toggleSaveHostel = () => {
           if (savedHostels.includes(detail.id)) {
             setSavedHostels(savedHostels.filter(id => id !== detail.id));
@@ -115,12 +108,15 @@ useEffect(() => {
       };   
       if (!detail) {
         return <div className="text-center mt-10 text-xl">Loading hostel details...</div>;
-      }      
+      }
+      
+     const rating = detail.rating || 0;
+           
     return(
         <div>
           
             <h2 className="text-3xl text-center mt-6">Hostel Details</h2>
-            <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Back</button>
+          {/*  <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Back</button> */}
             <div className="flex justify-between items-center mt-4 px-5">
   <button onClick={handlePrev} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400">⬅ Prev </button>
   <button onClick={handleNext} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400"> Next ➡</button>
@@ -146,6 +142,15 @@ useEffect(() => {
                             </div>
                         ))}
                     </Carousel>
+                    <h1 className="font-bold mb-3 text-2xl">Available:</h1>
+                     <div className="flex gap-5 flex-wrap">
+  {detail.amenities?.map((amenity, index) => (
+    <div key={index} className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-lg shadow">
+      <img src={amenityIcons[amenity]} alt={amenity} className="w-6 h-6" />
+      <span className="capitalize">{amenity.replace('-', ' ')}</span>
+    </div>
+  ))}
+</div>  
 
                 </div>
             <div className="flex flex-col gap-5  ml-20">
@@ -156,8 +161,8 @@ useEffect(() => {
 ))}
 <div className="absolute flex items-center justify-between py-2 my-6 mb-2">
   {detail && (
-    <div className="flex items-center space-x-6"> 
-      <h1 className="text-4xl uppercase font-bold">{detail.name}</h1>
+    <div className="flex items-center space-x-6 mt-3"> 
+      <h1 className="text-4xl uppercase font-bold mb-4">{detail.name}</h1>
   <button className="px-6 py-2"
   onClick={() => {
     toggleSaveHostel();
@@ -179,7 +184,8 @@ useEffect(() => {
   </button>
   </div>
   )}
-</div></div><br/>
+</div></div>
+<p className=" mt-3">{detail.description}</p>
 
                 {detail.roomTypes && (
   <div className="flex items-center gap-5">
@@ -209,43 +215,24 @@ useEffect(() => {
 
 
 
-                <div className="flex gap-5">
-                   {/*    <div className="flex gap-2 justify-center items-center">
-                     <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center" onClick={handleMinusQuantity}>-</button>
-                        <span className="bg-gray-200 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center">{quantity}</span>
-                        <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center" onClick={handlePlusQuantity}>+</button>
-                   </div>*/} 
+                <div className="flex gap-5 mb-4">
                     <button className="flex items-center gap-5 bg-orange-400 text-white px-7 py-3 rounded-xl shadow-2xl hover:bg-orange-600 flex gap-4" onClick={handleBooking}>
                         Book</button>
                     </div>
-                    
-                    {/* To make Book button and price same line
-                    <div className="flex items-center gap-5">
-  <p className="font-bold text-3xl">
-    {selectedRoomType ? `₦${selectedRoomType.price}` : 'Pick a room'}
-  </p>
-  <button
-    className="bg-orange-400 text-white mx-16 px-7 py-3 my-7 rounded-xl shadow-2xl hover:bg-orange-600"
-    onClick={handleBooking}
-  >
-    Book
-  </button>
-</div> */}
-                    <br/>
-                    <p>
-                        {detail.description}
-                     </p>
-                     <p className="flex"><img src={phoneIcon} alt="phoneIcon" className="w-7 mx-5"/>  {detail.contact}
-                    <img src={emailIcon} alt="emailIcon" className="w-7 mx-3 "/>  {detail.email}</p>
-                  <br/>   <h1 className="font-bold mb-3 text-2xl">Available:</h1>
-                     <div className="flex gap-5 flex-wrap">
-  {detail.amenities?.map((amenity, index) => (
-    <div key={index} className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-lg shadow">
-      <img src={amenityIcons[amenity]} alt={amenity} className="w-6 h-6" />
-      <span className="capitalize">{amenity.replace('-', ' ')}</span>
-    </div>
-  ))}
-</div>  
+                    <p className=" mt-2">Ratings From Residents</p>
+                 <div className="flex items-center">
+{Array.from({ length: 10 }, (_, i) => (
+  <img
+    key={i}
+    src={i < rating ? star : starOutline}
+    alt="star"
+    className="w-5 h-5 mr-1"
+  />
+))}
+<span className="ml-2 text-sm">({rating}/10)</span>
+</div>
+                     <div className="flex mt-2"><img src={phoneIcon} alt="phoneIcon" className="w-7 mr-2"/> <p className="flex mr-14"> {detail.contact}</p>
+                     <img src={emailIcon} alt="emailIcon" className="w-7 mr-4"/> <p className="flex "> {detail.email}</p></div>
 <div className="mt-6">
   <h3 className="text-2xl font-bold mb-3">Location</h3>
   {detail.lat && detail.lng && (
