@@ -7,18 +7,26 @@ import ForgotP from "./forgotPassword";
 
 const clientId = '336853841874-iifgh60gkvfmaehnu00252rolgr24os2.apps.googleusercontent.com';
 
-const Login = ({ onClose }) => {
+const Login = ({ onClose, onLoginSuccess }) => {
   const [phone, setPhone] = useState("");
   const [showForgotP, setShowForgotP] = useState(false);
   const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium ";
 
   const onSuccess = (credentialResponse) => {
-    const decoded = jwtDecode(credentialResponse.credential);
+    const token = credentialResponse?.credential;
+    if (!token || typeof token !== 'string') {
+      console.error("No valid credential token found!");
+      return;
+    }
+    const decoded = jwtDecode(token);
     console.log("LOGIN SUCCESS! Current user: ", decoded);
-    localStorage.setItem('google_token', credentialResponse.credential);
+    localStorage.setItem('google_token', token);
+    localStorage.setItem('google_user', JSON.stringify(decoded));
+    
+    if (onLoginSuccess) onLoginSuccess(decoded); // notify Header or parent
+    onClose(); // close modal after successful login
   };
-
-  const onError = () => {
+  const onFailure = () => {
     console.log("LOGIN FAILED!");
   };
 
@@ -85,12 +93,12 @@ const Login = ({ onClose }) => {
               <p className="text-center my-3 text-gray-500 text-sm">or</p>
 
               <GoogleOAuthProvider clientId={clientId}>
-                <div>
-                  <GoogleLogin
-                    onSuccess={onSuccess}
-                    onError={onError}
-                  />
-                </div>
+      <GoogleLogin
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={'single_host_origin'}
+        isSignedIn={true}
+      />
               </GoogleOAuthProvider>
 
               <button className={socialBtn}>
