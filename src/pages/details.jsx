@@ -116,8 +116,8 @@ useEffect(() => {
         <div>
           
             <h2 className="text-3xl text-center mt-6">Hostel Details</h2>
-          {/*  <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Back</button> */}
-            <div className="flex justify-between items-center mt-4 px-5">
+         <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Back</button> 
+            <div className="flex justify-between mt-4 px-5">
   <button onClick={handlePrev} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400">⬅ Prev </button>
   <button onClick={handleNext} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400"> Next ➡</button>
 </div>
