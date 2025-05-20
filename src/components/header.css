@@ -93,3 +93,15 @@ a {
 .cartGeneral{
   padding-top: 2%;
 }
+
+.user-name-button {
+  background-color: rgba(255, 166, 0, 0.521);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.user-name-button:hover {
+  background-color: rgba(211, 138, 3, 0.521);
+}

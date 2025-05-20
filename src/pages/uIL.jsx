@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { hostels } from "./hostels.jsx"
 import HostelCart from '../components/hostelCart.jsx';
 import uilLogo from "../assets/images/UIL Logo.png";
-// import ImageCarousel from '../components/imageCarousel.jsx';
 
 
 const UIL = () => {
@@ -38,7 +37,6 @@ const UIL = () => {
                 <option value="female">Female</option>
               </select>
             </div>
-          {/*   <SearchGender/>     {filteredHostels.map((hostel) => (  */}
         <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5'>
             {filteredHostels.map((hostel,key) =>
         <HostelCart key={key} data={hostel} />

@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from './components/layout.js'
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import    Home from './home.jsx';
+import  Home from './home.jsx';
 import Login from './pages/login.jsx';
 import SignUp from './pages/signup.jsx';
 import UIL from './pages/uIL.jsx';

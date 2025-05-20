@@ -5,17 +5,23 @@ import { useSelector } from 'react-redux';
 import Login from '../pages/login';
 import Signup from '../pages/signup';
 
-function Header({ setPage }) {
+function Header({ setPage, onHomeClick, showNav, toggleNav }) {
   const [user, setUser] = useState(null);
+  const [campus, setCampus] = useState('');
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const carts = useSelector(store => store.cart.hostels);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('google_user');
+    const storedUser = localStorage.getItem('google_user') || localStorage.getItem('manual_user');
+    const storedCampus = localStorage.getItem('user_campus');
+  
     if (storedUser) setUser(JSON.parse(storedUser));
+    if (storedCampus) setCampus(storedCampus);
   }, []);
+  
+  
 
   const handleLoginSuccess = (userData) => {
     setUser(userData);
@@ -26,12 +32,6 @@ function Header({ setPage }) {
     setUser(userData);
     localStorage.setItem('google_user', JSON.stringify(userData));
     setShowSignup(false);
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('google_user');
-    localStorage.removeItem('google_token');
   };
 
   return (
@@ -47,13 +47,13 @@ function Header({ setPage }) {
       <section className="button-container flex items-center ml-auto space-x-4">
         {user ? (
           <>
-            <span className="user-name mr-4 text-xl">Hi, {user.name || user.given_name || user.email}</span>
-            <button
-              onClick={handleLogout}
-              className="logout-button bg-red-500 text-white px-3 py-1 rounded"
-            >
-              Logout
-            </button>
+        <button onClick={toggleNav} className="flex items-center space-x-2 user-name-button">
+  <span className="text-xl">Hi, {user.name || user.given_name || user.email}</span>
+  <svg className={`w-4 h-4 transform transition-transform duration-200 ${showNav ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
+  </svg>
+</button>
+
           </>
         ) : (
           <>
@@ -80,7 +80,6 @@ function Header({ setPage }) {
             )}
           </>
         )}
-
         <div className="w-12 h-12 bg-gray-100 rounded-full flex justify-center items-center relative mt-3">
           <Link to="/cart">
             <img

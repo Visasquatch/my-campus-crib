@@ -14,12 +14,8 @@ function Home() {
           Book student housing close to top universities in Nigeria – quick, easy, and comfortable.
         </div>
       </section>
-
       <SearchBar />
-      <br />
-      <br />
-     
-
+      <br /> <br />
       <div className="cards">
         <div className="card">
           <img

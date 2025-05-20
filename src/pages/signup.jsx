@@ -6,17 +6,30 @@ import '../App.css';
 
 const clientId = '336853841874-iifgh60gkvfmaehnu00252rolgr24os2.apps.googleusercontent.com';
 const Signup = ({ onClose, onSignupSuccess }) => {
-  const [phone, setPhone] = useState("");
+  const [fName, setFName] = useState('');
+  const [lName, setLName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [campus, setCampus] = useState('');
   const [showSignup] = useState(true);
   const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium";
-  const [formData, setFormData] = useState({
-    fName: '',
-    lName: '',
-    phone: '',
-    email: '',
-    password: ''
-  });
+  const handleSignup = () => {
+    const newUser = {
+      fName,
+      lName,
+      phone,
+      email,
+      password,
+      campus,
+    };
+    localStorage.setItem('manual_user', JSON.stringify(newUser));
+    localStorage.setItem('user_campus', campus);
 
+    if (onSignupSuccess) onSignupSuccess(newUser);
+
+    if (onClose) onClose();
+  };
  const onSuccess = (credentialResponse) => {
     const token = credentialResponse?.credential;
     if (!token || typeof token !== 'string') {
@@ -90,7 +103,10 @@ const Signup = ({ onClose, onSignupSuccess }) => {
 <div className="mb-4 text-black text-sm">
   <label className="block text-sm font-medium text-gray-700">
     Campus </label>
-    <select className="w-full border p-2 rounded">
+    <select 
+  value={campus}
+  onChange={(e) => setCampus(e.target.value)}
+    className="w-full border p-2 rounded">
     <option value="University of Ilorin">University of Ilorin</option>
   <option value="University of Lagos">University of Lagos</option>
   <option value="University of Ibadan">University of Ibadan</option>
@@ -111,15 +127,15 @@ const Signup = ({ onClose, onSignupSuccess }) => {
 <input
   type="text"
   placeholder="First name"
-  value={formData.fName}
-  onChange={(e) => setFormData({...formData, fName: e.target.value})}
+  value={fName}
+  onChange={(e) => setFName(e.target.value)}
   className=" border p-2 rounded"/>
 
   <input 
   type="text"
   placeholder="Last name"
-  value={formData.lName}
-  onChange={(e) => setFormData({...formData, lName: e.target.value})}
+  value={lName}
+  onChange={(e) => setLName(e.target.value)}
   className="ml-12 border p-2 rounded"/>
 </div>
      
@@ -127,8 +143,8 @@ const Signup = ({ onClose, onSignupSuccess }) => {
   <input
     type="password"
     placeholder="Password"
-    value={formData.password}
-  onChange={(e) => setFormData({...formData, password: e.target.value})}
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
   className="w-full border p-2 rounded"/>
 </div>
         <button className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400">
