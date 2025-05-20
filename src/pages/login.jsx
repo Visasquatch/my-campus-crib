@@ -8,9 +8,19 @@ import ForgotP from "./forgotPassword";
 const clientId = '336853841874-iifgh60gkvfmaehnu00252rolgr24os2.apps.googleusercontent.com';
 
 const Login = ({ onClose, onLoginSuccess }) => {
-  const [phone, setPhone] = useState("");
+ const [phone, setPhone] = useState("");
+   const [fName, setfName] = useState('');
+   const [lName, setlName] = useState('');
+   const [password, setPassword] = useState('');
   const [showForgotP, setShowForgotP] = useState(false);
   const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium ";
+   const [formData, setFormData] = useState({
+      fName: '',
+      lName: '',
+      phone: '',
+      email: '',
+      password: ''
+    });
 
   const onSuccess = (credentialResponse) => {
     const token = credentialResponse?.credential;
@@ -70,15 +80,25 @@ const Login = ({ onClose, onLoginSuccess }) => {
               </div>
 
               <div className="mb-4 text-sm">
-                <input
-                  type="tel"
-                  placeholder="Phone number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full border p-2 rounded"
-                />
-              </div>
-
+  <input
+    type="tel"
+    placeholder="Phone number"
+    value={phone}
+  onChange={(e) => {
+    const input = e.target.value;
+  if (/^\d{0,11}$/.test(input)) {
+    setPhone(input);}
+  }}
+  className="w-full border p-2 rounded"/>
+</div>
+<div className="mb-4 text-sm">
+  <input
+    type="password"
+    placeholder="Password"
+    value={formData.password}
+  onChange={(e) => setFormData({...formData, password: e.target.value})}
+  className="w-full border p-2 rounded"/>
+</div>
               <button className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400">
                 Continue
               </button>

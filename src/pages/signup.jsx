@@ -1,15 +1,39 @@
 import React, { useState } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { jwtDecode } from 'jwt-decode';
 import '../App.css';
-import Login from "./login";
-import { Link } from "react-router-dom";
 
-const Signup = ({ onClose }) => {
+const clientId = '336853841874-iifgh60gkvfmaehnu00252rolgr24os2.apps.googleusercontent.com';
+const Signup = ({ onClose, onSignupSuccess }) => {
   const [phone, setPhone] = useState("");
-  const [showSignup, setShowSignup] = useState(true);
+  const [showSignup] = useState(true);
   const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium";
+  const [formData, setFormData] = useState({
+    fName: '',
+    lName: '',
+    phone: '',
+    email: '',
+    password: ''
+  });
 
+ const onSuccess = (credentialResponse) => {
+    const token = credentialResponse?.credential;
+    if (!token || typeof token !== 'string') {
+      console.error("No valid credential token found!");
+      return;
+    }
+    const decoded = jwtDecode(token);
+    console.log("SIGNUP SUCCESS! Current user: ", decoded);
+    localStorage.setItem('google_token', token);
+    localStorage.setItem('google_user', JSON.stringify(decoded));
+    
+    if (onSignupSuccess) onSignupSuccess(decoded); 
+    onClose(); 
+  };
+  const onFailure = () => {
+    console.log("LOGIN FAILED!");
+  };
 
   return (
     showSignup &&(
@@ -55,29 +79,72 @@ const Signup = ({ onClose }) => {
     type="tel"
     placeholder="Phone number"
     value={phone}
-    onChange={(e) => setPhone(e.target.value)}
-    className="w-full border p-2 rounded"
-  />
+  onChange={(e) => {
+    const input = e.target.value;
+  if (/^\d{0,11}$/.test(input)) {
+    setPhone(input);}
+  }}
+  className="w-full border p-2 rounded"/>
 </div>
 
+<div className="mb-4 text-black text-sm">
+  <label className="block text-sm font-medium text-gray-700">
+    Campus </label>
+    <select className="w-full border p-2 rounded">
+    <option value="University of Ilorin">University of Ilorin</option>
+  <option value="University of Lagos">University of Lagos</option>
+  <option value="University of Ibadan">University of Ibadan</option>
+  <option value="University of Abuja">University of Abuja</option>
+  <option value="University of Benin">University of Benin</option>
+  <option value="Obafemi Awolowo University">Obafemi Awolowo University</option>
+  <option value="Olabisi Olabanjo University">Olabisi Olabanjo University</option>
+  <option value="Ahmadu Bello University">Ahmadu Bello University</option>
+  <option value="Federal University of Technology Akure">Federal University of Technology Akure</option>
+  <option value="Lagos State University">Lagos State University</option>
+  <option value="Kwara State University">Kwara State University</option>
+  <option value="Nigerian Defence Academy">Nigerian Defence Academy</option>
+  <option value="University of Nigeria Nsukka">University of Nigeria Nsukka</option>
+  </select>
+  </div>
+
+<div className="mb-4 text-sm">
+<input
+  type="text"
+  placeholder="First name"
+  value={formData.fName}
+  onChange={(e) => setFormData({...formData, fName: e.target.value})}
+  className=" border p-2 rounded"/>
+
+  <input 
+  type="text"
+  placeholder="Last name"
+  value={formData.lName}
+  onChange={(e) => setFormData({...formData, lName: e.target.value})}
+  className="ml-12 border p-2 rounded"/>
+</div>
      
+<div className="mb-4 text-sm">
+  <input
+    type="password"
+    placeholder="Password"
+    value={formData.password}
+  onChange={(e) => setFormData({...formData, password: e.target.value})}
+  className="w-full border p-2 rounded"/>
+</div>
         <button className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400">
           Continue
         </button>
 
         <p className="text-center my-3 text-gray-500 text-sm">or</p>
       
-        <button className= {socialBtn}>
-        <FaGoogle /> Continue with Google
-        </button>
-
-        <button className= {socialBtn}>
-       <FaApple/> Continue with Apple
-        </button>
-
-        <button className= {socialBtn}>
-          ✉️ Continue with Email
-        </button>
+        <GoogleOAuthProvider clientId={clientId}>
+              <GoogleLogin
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                cookiePolicy={'single_host_origin'}
+                isSignedIn={true}
+              />
+                      </GoogleOAuthProvider>
 
         <button className= {socialBtn}>
    <FaFacebook/>Continue with Facebook

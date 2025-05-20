@@ -47,11 +47,12 @@ const SearchBar = () => {
         placeholder="Search by University"
       />
       <div className="search-icon">
+        <button>
         <img
           src="https://img.icons8.com/?size=100&id=7695&format=png&color=000000"
           alt="Search Icon"
           style={{ width: "20px", height: "20px" }}
-        />
+        /></button>
       </div>
 
       {dropdownVisible && (

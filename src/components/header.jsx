@@ -22,6 +22,11 @@ function Header({ setPage }) {
     localStorage.setItem('google_user', JSON.stringify(userData));
     setShowLogin(false);
   };
+  const handleSignupSuccess = (userData) => {
+    setUser(userData);
+    localStorage.setItem('google_user', JSON.stringify(userData));
+    setShowSignup(false);
+  };
 
   const handleLogout = () => {
     setUser(null);
@@ -42,7 +47,7 @@ function Header({ setPage }) {
       <section className="button-container flex items-center ml-auto space-x-4">
         {user ? (
           <>
-            <span className="user-name mr-4">Hi, {user.name || user.given_name || user.email}</span>
+            <span className="user-name mr-4 text-xl">Hi, {user.name || user.given_name || user.email}</span>
             <button
               onClick={handleLogout}
               className="logout-button bg-red-500 text-white px-3 py-1 rounded"
@@ -69,7 +74,7 @@ function Header({ setPage }) {
             {showSignup && (
               <div className="modal">
                 <div className="modal-content">
-                  <Signup onClose={() => setShowSignup(false)} />
+                  <Signup onClose={() => setShowSignup(false)} onSignupSuccess={handleSignupSuccess} />
                 </div>
               </div>
             )}
