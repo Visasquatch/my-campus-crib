@@ -9,6 +9,7 @@ import UIL from './pages/uIL.jsx';
 import Detail from './pages/details.jsx';
 import  Actual_Cart  from './pages/actualCart.jsx';
 import ForgotP from './pages/forgotPassword.jsx';
+import Profile from './pages/profile.jsx';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<SignUp />} />
+    <Route path="/profile" element={<Profile />} />
     <Route path="/cart" element={<Actual_Cart />} />
         <Route path="/university-of-ilorin" element={<UIL />} /> 
         <Route path="/university-of-ilorin/:slug" element={<Detail />} />
