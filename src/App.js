@@ -10,24 +10,33 @@ import Detail from './pages/details.jsx';
 import  Actual_Cart  from './pages/actualCart.jsx';
 import ForgotP from './pages/forgotPassword.jsx';
 import Profile from './pages/profile.jsx';
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import msalConfig from "./authConfig";
+
+const msalInstance = new PublicClientApplication(msalConfig);
+
 
 function App() {
   return (
-    <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Layout />} >
-    <Route path="/" element={<Home />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/signup" element={<SignUp />} />
-    <Route path="/profile" element={<Profile />} />
-    <Route path="/cart" element={<Actual_Cart />} />
-        <Route path="/university-of-ilorin" element={<UIL />} /> 
-        <Route path="/university-of-ilorin/:slug" element={<Detail />} />
-    <Route path="/forgotPassword" element={<ForgotP />} />
-    </Route>
-  </Routes>
-</BrowserRouter>
+    <MsalProvider instance={msalInstance}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />} >
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Actual_Cart />} />
+            <Route path="/university-of-ilorin" element={<UIL />} /> 
+            <Route path="/university-of-ilorin/:slug" element={<Detail />} />
+            <Route path="/forgotPassword" element={<ForgotP />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </MsalProvider>
   );
 }
+
 
 export default App;

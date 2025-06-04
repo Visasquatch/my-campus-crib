@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode';
 import '../App.css';
 import ForgotP from "./forgotPassword";
@@ -8,24 +8,33 @@ import ForgotP from "./forgotPassword";
 const clientId = '336853841874-iifgh60gkvfmaehnu00252rolgr24os2.apps.googleusercontent.com';
 
 const Login = ({ onClose, onLoginSuccess }) => {
- const [phone, setPhone] = useState("");
-   const [fName, setfName] = useState('');
-   const [lName, setlName] = useState('');
-   const [password, setPassword] = useState('');
+ // const [phone, setPhone] = useState("");
+ const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({ password: "" });
   const [showForgotP, setShowForgotP] = useState(false);
-  const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium ";
-   const [formData, setFormData] = useState({
-      fName: '',
-      lName: '',
-      phone: '',
-      email: '',
-      password: ''
-    });
 
+  const handleLogin = async () => {
+    try {
+//      const fullPhone = `${countryCode}${phone}`;
+      const response = await axios.post('http://localhost:5000/api/v1/auth/login', {
+        email,
+        password: formData.password
+      });
+      console.log(response.data);
+      localStorage.setItem('login_token', response.data.token);
+      if (onLoginSuccess) onLoginSuccess(response.data);
+      onClose();
+    } catch (error) {
+      console.error("Login failed", error.response?.data);
+      alert(error.response?.data?.message || "Login failed.");
+    }
+  };
+  
   const onSuccess = (credentialResponse) => {
     const token = credentialResponse?.credential;
     if (!token || typeof token !== 'string') {
       console.error("No valid credential token found!");
+      
       return;
     }
     const decoded = jwtDecode(token);
@@ -33,8 +42,8 @@ const Login = ({ onClose, onLoginSuccess }) => {
     localStorage.setItem('google_token', token);
     localStorage.setItem('google_user', JSON.stringify(decoded));
     
-    if (onLoginSuccess) onLoginSuccess(decoded); // notify Header or parent
-    onClose(); // close modal after successful login
+    if (onLoginSuccess) onLoginSuccess(decoded);
+    onClose();
   };
   const onFailure = () => {
     console.log("LOGIN FAILED!");
@@ -51,45 +60,14 @@ const Login = ({ onClose, onLoginSuccess }) => {
               <h2 className="text-2xl font-semibold text-center text-gray-800 mb-4">
                 Welcome back to Campus Crib
               </h2>
-
-              <div className="mb-4 text-black text-sm">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Country code
-                </label>
-                <select className="w-full border p-2 rounded">
-                  <option value="+234">Nigeria (+234)</option>
-                  <option value="+229">Benin (+229)</option>
-                  <option value="+226">Burkina Faso (+226)</option>
-                  <option value="+245">Cabo Verde (+245)</option>
-                  <option value="+225">Côte d’Ivoire (+225)</option>
-                  <option value="+220">Gambia (+220)</option>
-                  <option value="+233">Ghana (+233)</option>
-                  <option value="+224">Guinea (+224)</option>
-                  <option value="+231">Liberia (+231)</option>
-                  <option value="+223">Mali (+223)</option>
-                  <option value="+227">Niger (+227)</option>
-                  <option value="+221">Senegal (+221)</option>
-                  <option value="+232">Sierra Leone (+232)</option>
-                  <option value="+228">Togo (+228)</option>
-                  <option value="+1">Canada (+1)</option>
-                  <option value="+33">France (+33)</option>
-                  <option value="+27">South Africa (+27)</option>
-                  <option value="+44">United Kingdom (+44)</option>
-                  <option value="+1">United States (+1)</option>
-                </select>
-              </div>
-
-              <div className="mb-4 text-sm">
+<div className="mb-4 text-sm">
   <input
-    type="tel"
-    placeholder="Phone number"
-    value={phone}
-  onChange={(e) => {
-    const input = e.target.value;
-  if (/^\d{0,11}$/.test(input)) {
-    setPhone(input);}
-  }}
-  className="w-full border p-2 rounded"/>
+    type="email"
+    placeholder="Email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className="w-full border p-2 rounded"
+  />
 </div>
 <div className="mb-4 text-sm">
   <input
@@ -99,9 +77,12 @@ const Login = ({ onClose, onLoginSuccess }) => {
   onChange={(e) => setFormData({...formData, password: e.target.value})}
   className="w-full border p-2 rounded"/>
 </div>
-              <button className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400">
-                Continue
-              </button>
+<button
+  onClick={handleLogin}
+  className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400"
+> Continue
+</button>
+
 
               <button
                 onClick={() => setShowForgotP(true)}
@@ -120,18 +101,6 @@ const Login = ({ onClose, onLoginSuccess }) => {
         isSignedIn={true}
       />
               </GoogleOAuthProvider>
-
-              <button className={socialBtn}>
-                <FaApple /> Continue with Apple
-              </button>
-
-              <button className={socialBtn}>
-                ✉ Continue with Email
-              </button>
-
-              <button className={socialBtn}>
-                <FaFacebook /> Continue with Facebook
-              </button>
             </>
           )}
           <button onClick={onClose} className="close-btn">

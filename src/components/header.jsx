@@ -10,20 +10,30 @@ function Header({ setPage, onHomeClick, showNav, toggleNav }) {
   const [campus, setCampus] = useState('');
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [totalQuantity, setTotalQuantity] = useState(0);
   const carts = useSelector(store => store.cart.hostels);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('google_user') || localStorage.getItem('manual_user');
-    const storedCampus = localStorage.getItem('user_campus');
+    const loadUser = () => {
+      const storedUser = localStorage.getItem('google_user') || localStorage.getItem('manual_user');
+      const storedCampus = localStorage.getItem('user_campus');
+    
+      if (storedUser) setUser(JSON.parse(storedUser));
+      else setUser(null); 
   
-    if (storedUser) setUser(JSON.parse(storedUser));
-    if (storedCampus) setCampus(storedCampus);
+      if (storedCampus) setCampus(storedCampus);
+    };
+  
+    loadUser();
+  
+    window.addEventListener('storage', loadUser);
+  
+    return () => {
+      window.removeEventListener('storage', loadUser);
+    };
   }, []);
-  
-  
 
   const handleLoginSuccess = (userData) => {
+    console.log("Logged in user:", userData);
     setUser(userData);
     localStorage.setItem('google_user', JSON.stringify(userData));
     setShowLogin(false);
@@ -48,7 +58,7 @@ function Header({ setPage, onHomeClick, showNav, toggleNav }) {
         {user ? (
           <>
         <button onClick={toggleNav} className="flex items-center space-x-2 user-name-button">
-  <span className="text-xl">Hi, {user.name || user.given_name || user.email}</span>
+        <span className="text-xl">Hi, {user.fName || user.name || user.given_name || user.email}</span>
   <svg className={`w-4 h-4 transform transition-transform duration-200 ${showNav ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
   </svg>
@@ -90,7 +100,6 @@ function Header({ setPage, onHomeClick, showNav, toggleNav }) {
             <span
               className="absolute top-2/3 right-1/2 bg-red-500 text-white text-sm w-5 h-5 rounded-full flex justify-center items-center"
             >
-              {totalQuantity}
             </span>
           </Link>
         </div>

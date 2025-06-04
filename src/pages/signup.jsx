@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { FaFacebook } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode';
@@ -13,23 +14,26 @@ const Signup = ({ onClose, onSignupSuccess }) => {
   const [password, setPassword] = useState('');
   const [campus, setCampus] = useState('');
   const [showSignup] = useState(true);
+  const [countryCode, setCountryCode] = useState("+234");
   const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium";
-  const handleSignup = () => {
-    const newUser = {
-      fName,
-      lName,
-      phone,
-      email,
-      password,
-      campus,
-    };
-    localStorage.setItem('manual_user', JSON.stringify(newUser));
-    localStorage.setItem('user_campus', campus);
-
-    if (onSignupSuccess) onSignupSuccess(newUser);
-
-    if (onClose) onClose();
+  const handleSignup = async () => {
+    if (!fName || !lName || !phone || !email || !password || !campus) {
+      alert("Please fill out all fields.");
+      return;
+    }
+    const fullPhone = `${countryCode}${phone}`;
+    const newUser = { fName, lName, phone: fullPhone, email, password, campus };    
+    try {
+      const response = await axios.post('http://localhost:5000/api/v1/auth/register', newUser);
+      console.log(response.data);
+      if (onSignupSuccess) onSignupSuccess(newUser);
+      onClose();
+    } catch (error) {
+      console.error("Signup failed", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Signup failed. Please try again.");
+    }
   };
+   
  const onSuccess = (credentialResponse) => {
     const token = credentialResponse?.credential;
     if (!token || typeof token !== 'string') {
@@ -53,17 +57,21 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     <div className="general">
       
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-  <div className="bg-white px-6 py-8 rounded-xl w-full max-w-md shadow-xl overflow-y-auto max-h-[90vh] relative">
+  <div className="bg-white px-6 py-8 rounded-xl w-full max-w-md shadow-xl overflow-y-auto max-h-[100vh] relative">
 
   <h2 className="text-2xl font-semibold text-center text-gray-800 mb-4">
   Welcome to Campus Crib
 </h2>
 
-<div className="mb-4 text-black text-sm">
+<div className="text-black text-sm">
   <label className="block text-sm font-medium text-gray-700 mb-1">
     Country code
   </label>
-  <select className="w-full border p-2 rounded">
+  <select
+  value={countryCode}
+  onChange={(e) => setCountryCode(e.target.value)}
+  className="w-full border p-2 rounded"
+>
   <option value="+234">Nigeria (+234)</option>
   <option value="+229">Benin (+229)</option>
   <option value="+226">Burkina Faso (+226)</option>
@@ -99,7 +107,15 @@ const Signup = ({ onClose, onSignupSuccess }) => {
   }}
   className="w-full border p-2 rounded"/>
 </div>
-
+<div className="mb-4 text-sm">
+  <input
+    type="email"
+    placeholder="Email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className="w-full border p-2 rounded"
+  />
+</div>
 <div className="mb-4 text-black text-sm">
   <label className="block text-sm font-medium text-gray-700">
     Campus </label>
@@ -147,9 +163,11 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     onChange={(e) => setPassword(e.target.value)}
   className="w-full border p-2 rounded"/>
 </div>
-        <button className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400">
-          Continue
-        </button>
+<button onClick={handleSignup} className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400">
+  Continue
+</button>
+
+
 
         <p className="text-center my-3 text-gray-500 text-sm">or</p>
       

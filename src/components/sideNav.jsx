@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMsal } from "@azure/msal-react";
 
 function SideNav() {
   const [user, setUser] = useState(null);
@@ -13,12 +14,21 @@ function SideNav() {
     if (storedCampus) setCampus(storedCampus);
   }, []);
 
+  const { instance } = useMsal();
+
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('google_user');
     localStorage.removeItem('google_token');
+    window.dispatchEvent(new Event('storage'));
+    const account = instance.getActiveAccount();
+    if (account) {
+      instance.logoutRedirect();
+    } else {
+      console.log("No active MSAL account — just cleared local storage.");
+    }
   };
-
+  
   return (
     <nav className="w-full flex items-center p-3 bg-gray-100 border-b border-gray-300 shadow-sm">
         <div class="flex space-x-9 ml-2">
