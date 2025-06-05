@@ -7,7 +7,8 @@ import Login from './pages/login.jsx';
 import SignUp from './pages/signup.jsx';
 import UIL from './pages/uIL.jsx';
 import Detail from './pages/details.jsx';
-import  Actual_Cart  from './pages/actualCart.jsx';
+import PaymentForm from "./payment/payment.jsx"
+import  ActualCart  from './pages/actualCart.jsx';
 import ForgotP from './pages/forgotPassword.jsx';
 import Profile from './pages/profile.jsx';
 import { PublicClientApplication } from "@azure/msal-browser";
@@ -27,9 +28,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/cart" element={<Actual_Cart />} />
+            <Route path="/cart" element={<ActualCart />} />
             <Route path="/university-of-ilorin" element={<UIL />} /> 
             <Route path="/university-of-ilorin/:slug" element={<Detail />} />
+            <Route path="payment" element={<PaymentForm />} />
             <Route path="/forgotPassword" element={<ForgotP />} />
           </Route>
         </Routes>

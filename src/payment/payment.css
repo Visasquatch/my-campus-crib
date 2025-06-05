@@ -1,0 +1,102 @@
+/* Payment Modal Overlay */
+.payment-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+  }
+  
+  /* Modal Box Styling */
+  .payment-container form {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  
+  /* Form Group Spacing */
+  .form-group {
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  
+  /* Label Styling */
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333333;
+  }
+  
+  /* Input Field Styling */
+  .form-group input[type="email"],
+  .form-group input[type="number"],
+  .form-group input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #f59e0b; /* orange-400 */
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    background-color: #fb923c; /* orange-400 */
+    color: #ffffff;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #f97316; /* darker orange */
+  }
+  
+  /* Close Button (X) */
+  .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #374151; /* gray-700 */
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close-btn:hover {
+    color: #000000;
+  }
+  .form-group h1{
+    color: orange;
+  }
+  /* Optional: Smooth fade-in effect */
+  .payment-container {
+    animation: fadeIn 0.25s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  

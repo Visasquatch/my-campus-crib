@@ -1,7 +1,7 @@
 import React from "react";
 import '../components/header.css';
 
- const Actual_Cart= () => {
+ const ActualCart= () => {
     return (
       <div className="cartGeneral">
         <h1>Book here</h1>
@@ -9,4 +9,4 @@ import '../components/header.css';
     );
   };
 
-export default Actual_Cart;
+export default ActualCart;

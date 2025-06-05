@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import Login from '../pages/login';
 import Signup from '../pages/signup';
 
 function Header({ setPage, onHomeClick, showNav, toggleNav }) {
   const [user, setUser] = useState(null);
-  const [campus, setCampus] = useState('');
+//  const [campus, setCampus] = useState('');
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const carts = useSelector(store => store.cart.hostels);
+ // const carts = useSelector(store => store.cart.hostels);
 
   useEffect(() => {
     const loadUser = () => {
       const storedUser = localStorage.getItem('google_user') || localStorage.getItem('manual_user');
-      const storedCampus = localStorage.getItem('user_campus');
+ //     const storedCampus = localStorage.getItem('user_campus');
     
       if (storedUser) setUser(JSON.parse(storedUser));
       else setUser(null); 
   
-      if (storedCampus) setCampus(storedCampus);
+//      if (storedCampus) setCampus(storedCampus);
     };
   
     loadUser();

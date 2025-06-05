@@ -4,8 +4,8 @@ import { Carousel } from "react-responsive-carousel";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate  } from "react-router-dom";
 import { hostels } from "./hostels";
-import { useDispatch } from "react-redux";
-import { book } from "../store/cart";
+// import { useDispatch } from "react-redux";
+// import { book } from "../store/cart";
 import phoneIcon from "../assets/images/phone.png";
 import emailIcon from "../assets/images/email.png";
 import kitchen from "../assets/images/kitchen.png";
@@ -25,6 +25,7 @@ import heartOutline from "../assets/images/heart outline.png"
 import starOutline from "../assets/images/star Outline.png"
 import star from "../assets/images/star.png"
 import heart from "../assets/images/heart.png"
+import PaymentForm from "../payment/payment";
 console.log('Hostels array:', hostels);
 
 
@@ -33,19 +34,24 @@ const Detail = () => {
     console.log(slug);
     const [detail, setDetail] = useState(null);
     const navigate = useNavigate(); 
-    const [quantity, setQuantity] = useState(1);
-    const dispatch = useDispatch();
+  //  const [quantity, setQuantity] = useState(1);
+ //   const dispatch = useDispatch();
     const [selectedRoomType, setSelectedRoomType] = useState(null);
     const [savedHostels, setSavedHostels] = useState([]);
     const isSaved = detail ? savedHostels.includes(detail.id) : false;
+    const [bookedHostels, setBookedHostels] = useState([]);
+    const isBooked = detail ? bookedHostels.includes(detail.id) : false;
     const currentIndex = hostels.findIndex(h => h.slug === slug);
- 
+    const [showPaymentForm, setShowPaymentForm] = useState(false);
+
     const handleNext = () => {
+      if (currentIndex === -1) return;
       const nextIndex = (currentIndex + 1) % hostels.length;
       navigate(`/university-of-ilorin/${hostels[nextIndex].slug}`);
     };
     
     const handlePrev = () => {
+      if (currentIndex === -1) return;
       const prevIndex = (currentIndex - 1 + hostels.length) % hostels.length;
       navigate(`/university-of-ilorin/${hostels[prevIndex].slug}`);
     };
@@ -62,7 +68,7 @@ useEffect(() => {
     setDetail(findDetail);
     setSelectedRoomType(findDetail.roomTypes?.[0] || null);
   } else {
-    window.location.href = '/';
+    navigate('/');
   }
 }, [slug, hostels]);
 
@@ -75,6 +81,14 @@ useEffect(() => {
       localStorage.setItem('savedHostels', JSON.stringify(savedHostels));
     }, [savedHostels]);
     
+    useEffect(() => {
+  const storedBookings = JSON.parse(localStorage.getItem('bookedHostels')) || [];
+  setBookedHostels(storedBookings);
+}, []);
+  useEffect(() => {
+  localStorage.setItem('bookedHostels', JSON.stringify(bookedHostels));
+}, [bookedHostels]);
+
         const toggleSaveHostel = () => {
           if (savedHostels.includes(detail.id)) {
             setSavedHostels(savedHostels.filter(id => id !== detail.id));
@@ -84,13 +98,13 @@ useEffect(() => {
         };
         
         
-        const handleBooking = () => {
+ /*       const handleBooking = () => {
           dispatch(book({
             productId: detail.id,
             quantity: quantity,
             roomType: selectedRoomType?.type
           }));          
-    };  
+    };  */
     const amenityIcons = {
         wifi: wifi,
         kitchen: kitchen,
@@ -114,7 +128,20 @@ useEffect(() => {
            
     return(
         <div>
-          
+       {showPaymentForm && (
+  <div className="modal">
+    <div className="modal-content">
+      <PaymentForm 
+        onClose={() => setShowPaymentForm(false)} 
+        onSuccess={() => {
+          setBookedHostels(prev => [...prev, detail.id]);
+          setShowPaymentForm(false);
+        }} 
+      />
+    </div>
+  </div>
+)}
+
             <h2 className="text-3xl text-center mt-6">Hostel Details</h2>
          <button onClick={() => navigate('/university-of-ilorin')} className="bg-[#FFA500] p-2 rounded-lg ml-5 hover:bg-orange-400">⬅ Back</button> 
             <div className="flex justify-between mt-4 px-5">
@@ -216,8 +243,19 @@ useEffect(() => {
 
 
                 <div className="flex gap-5 mb-4">
-                    <button className="flex items-center gap-5 bg-orange-400 text-white px-7 py-3 rounded-xl shadow-2xl hover:bg-orange-600 flex gap-4" onClick={handleBooking}>
-                        Book</button>
+               <button 
+  className={`flex items-center gap-5 px-7 py-3 rounded-xl shadow-2xl text-white ${
+    isBooked ? 'bg-gray-400 cursor-not-allowed' : 'bg-orange-400 hover:bg-orange-600'
+  }`}
+  onClick={() => {
+    if (!isBooked) {
+      setShowPaymentForm(true);
+    }
+  }}
+>
+  {isBooked ? 'Booked' : 'Book'}
+</button>
+
                     </div>
                     <p className=" mt-2">Ratings From Residents</p>
                  <div className="flex items-center">
