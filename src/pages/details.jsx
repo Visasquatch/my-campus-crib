@@ -2,10 +2,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Carousel } from "react-responsive-carousel";
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../context/authContext";
 import { useParams, useNavigate  } from "react-router-dom";
 import { hostels } from "./hostels";
-// import { useDispatch } from "react-redux";
-// import { book } from "../store/cart";
 import phoneIcon from "../assets/images/phone.png";
 import emailIcon from "../assets/images/email.png";
 import kitchen from "../assets/images/kitchen.png";
@@ -26,6 +25,7 @@ import starOutline from "../assets/images/star Outline.png"
 import star from "../assets/images/star.png"
 import heart from "../assets/images/heart.png"
 import PaymentForm from "../payment/payment";
+import LoginModal from "../components/loginModal";
 console.log('Hostels array:', hostels);
 
 
@@ -34,8 +34,6 @@ const Detail = () => {
     console.log(slug);
     const [detail, setDetail] = useState(null);
     const navigate = useNavigate(); 
-  //  const [quantity, setQuantity] = useState(1);
- //   const dispatch = useDispatch();
     const [selectedRoomType, setSelectedRoomType] = useState(null);
     const [savedHostels, setSavedHostels] = useState([]);
     const isSaved = detail ? savedHostels.includes(detail.id) : false;
@@ -43,6 +41,9 @@ const Detail = () => {
     const isBooked = detail ? bookedHostels.includes(detail.id) : false;
     const currentIndex = hostels.findIndex(h => h.slug === slug);
     const [showPaymentForm, setShowPaymentForm] = useState(false);
+    const { isLoggedIn, login, logout } = useAuth();
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
 
     const handleNext = () => {
       if (currentIndex === -1) return;
@@ -70,7 +71,7 @@ useEffect(() => {
   } else {
     navigate('/');
   }
-}, [slug, hostels]);
+}, [slug], hostels);
 
     useEffect(() => {
       const stored = JSON.parse(localStorage.getItem('savedHostels')) || [];
@@ -81,10 +82,20 @@ useEffect(() => {
       localStorage.setItem('savedHostels', JSON.stringify(savedHostels));
     }, [savedHostels]);
     
+    const handleBookClick = () => {
+  if (!isLoggedIn) {
+    setShowLoginModal(true);
+    return;
+  }
+  if (!isBooked) {
+    setShowPaymentForm(true);
+  }
+};
     useEffect(() => {
   const storedBookings = JSON.parse(localStorage.getItem('bookedHostels')) || [];
   setBookedHostels(storedBookings);
 }, []);
+
   useEffect(() => {
   localStorage.setItem('bookedHostels', JSON.stringify(bookedHostels));
 }, [bookedHostels]);
@@ -96,15 +107,6 @@ useEffect(() => {
             setSavedHostels([...savedHostels, detail.id]);
           }
         };
-        
-        
- /*       const handleBooking = () => {
-          dispatch(book({
-            productId: detail.id,
-            quantity: quantity,
-            roomType: selectedRoomType?.type
-          }));          
-    };  */
     const amenityIcons = {
         wifi: wifi,
         kitchen: kitchen,
@@ -128,6 +130,7 @@ useEffect(() => {
            
     return(
         <div>
+          {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
        {showPaymentForm && (
   <div className="modal">
     <div className="modal-content">
@@ -243,19 +246,15 @@ useEffect(() => {
 
 
                 <div className="flex gap-5 mb-4">
-               <button 
+              <button
   className={`flex items-center gap-5 px-7 py-3 rounded-xl shadow-2xl text-white ${
     isBooked ? 'bg-gray-400 cursor-not-allowed' : 'bg-orange-400 hover:bg-orange-600'
   }`}
-  onClick={() => {
-    if (!isBooked) {
-      setShowPaymentForm(true);
-    }
-  }}
+  onClick={handleBookClick}
+  disabled={!isLoggedIn || isBooked}
 >
   {isBooked ? 'Booked' : 'Book'}
 </button>
-
                     </div>
                     <p className=" mt-2">Ratings From Residents</p>
                  <div className="flex items-center">

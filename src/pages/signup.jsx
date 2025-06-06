@@ -26,6 +26,10 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     try {
       const response = await axios.post('http://localhost:5000/api/v1/auth/register', newUser);
       console.log(response.data);
+        localStorage.setItem('manual_user', JSON.stringify(newUser));
+        localStorage.setItem('user_campus', newUser.campus);
+        localStorage.setItem('isLoggedIn', 'true');
+
       if (onSignupSuccess) onSignupSuccess(newUser);
       onClose();
     } catch (error) {

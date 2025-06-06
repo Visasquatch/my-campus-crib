@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useState }  from 'react';
+//import './LoginModal.css';
 import axios from 'axios';
-import { useAuth } from "../context/authContext";
-import { useNavigate } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import '../App.css';
-import ForgotP from "./forgotPassword";
+import { useAuth } from "../context/authContext";
+import { MdClose } from "react-icons/md";
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import ForgotP from "../pages/forgotPassword";
 
 const clientId = '336853841874-iifgh60gkvfmaehnu00252rolgr24os2.apps.googleusercontent.com';
-const Login = ({ onClose, onLoginSuccess }) => {
- const [email, setEmail] = useState("");
-  const [formData, setFormData] = useState({ password: "" });
-  const [showForgotP, setShowForgotP] = useState(false);
-  const { login } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogin = async () => {
+const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
+     const [email, setEmail] = useState("");
+      const [formData, setFormData] = useState({ password: "" });
+      const [showForgotP, setShowForgotP] = useState(false);
+        const { login } = useAuth();
+  if (!isOpen) return null;
+    const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/v1/auth/login', {
         email,
@@ -52,7 +51,7 @@ const Login = ({ onClose, onLoginSuccess }) => {
   };
 
   return (
-    <div className="general">
+     <div className="general">
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div className="bg-white px-6 py-8 rounded-xl w-full max-w-md shadow-xl overflow-y-auto max-h-[90vh] relative">
           {showForgotP ? (
@@ -113,4 +112,4 @@ const Login = ({ onClose, onLoginSuccess }) => {
   );
 };
 
-export default Login;
+export default LoginModal;

@@ -5,7 +5,7 @@ import './header.css';
 import Login from '../pages/login';
 import Signup from '../pages/signup';
 
-function Header({ setPage, onHomeClick, showNav, toggleNav }) {
+function Header({ showNav, toggleNav, openLoginModal }) {
   const [user, setUser] = useState(null);
 //  const [campus, setCampus] = useState('');
   const [showLogin, setShowLogin] = useState(false);

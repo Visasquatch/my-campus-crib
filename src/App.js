@@ -3,7 +3,6 @@ import Layout from './components/layout.js'
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import  Home from './home.jsx';
-import Login from './pages/login.jsx';
 import SignUp from './pages/signup.jsx';
 import UIL from './pages/uIL.jsx';
 import Detail from './pages/details.jsx';
@@ -25,7 +24,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />} >
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/cart" element={<ActualCart />} />

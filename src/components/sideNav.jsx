@@ -18,8 +18,11 @@ function SideNav() {
 
   const handleLogout = () => {
     setUser(null);
+    localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('google_user');
     localStorage.removeItem('google_token');
+    localStorage.removeItem('manual_user');
+    localStorage.removeItem('user_campus');
     window.dispatchEvent(new Event('storage'));
     const account = instance.getActiveAccount();
     if (account) {
