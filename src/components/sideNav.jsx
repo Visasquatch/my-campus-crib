@@ -40,7 +40,6 @@ function SideNav() {
 
   return (
     <nav className="w-full flex items-center p-3 bg-gray-100 border-b border-gray-300 shadow-sm relative z-10">
-      {/* Desktop Navigation Links */}
       <div className="hidden md:flex flex-grow items-center justify-start space-x-6 lg:space-x-9 ml-2">
         <Link to="/profile" className="flex items-center hover:bg-indigo-100 p-2 rounded">
           <img
@@ -77,16 +76,12 @@ function SideNav() {
           <span className="text-sm whitespace-nowrap">My Hostel</span>
         </Link>
       </div>
-
-      {/* Desktop Logout Button */}
       <button
         className="hidden md:block hover:bg-red-100 p-2 rounded text-red-600 ml-auto"
         onClick={handleLogout}
       >
         Logout
       </button>
-
-      {/* Mobile Hamburger Icon (visible on small screens) */}
       <div className="md:hidden flex flex-grow justify-end">
         <button onClick={toggleMobileMenu} className="p-2 rounded hover:bg-gray-200">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -94,21 +89,15 @@ function SideNav() {
           </svg>
         </button>
       </div>
-
-      {/* Mobile Menu (visible when toggled) */}
       {isMobileMenuOpen && (
-        // Removed bg-opacity-95. Removed items-center justify-center. Added overflow-y-auto.
         <div className="md:hidden fixed inset-0 bg-white z-20 flex flex-col p-4 overflow-y-auto">
-          {/* Close button - remains absolutely positioned relative to its parent (the menu div) */}
           <button onClick={toggleMobileMenu} className="absolute top-4 right-4 p-2 rounded hover:bg-gray-200">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
-          {/* Navigation links container for mobile */}
-          {/* Main content wrapper with padding from top to avoid close button collision, and horizontal padding */}
-          <div className="flex flex-col space-y-4 pt-16 pb-8 text-xl w-full px-4"> {/* Adjusted space-y, added px-4 */}
-            <Link onClick={toggleMobileMenu} to="/profile" className="flex items-center hover:bg-indigo-100 p-3 rounded w-full"> {/* w-full ensures it takes full width */}
+          <div className="flex flex-col space-y-4 pt-16 pb-8 text-xl w-full px-4"> 
+            <Link onClick={toggleMobileMenu} to="/profile" className="flex items-center hover:bg-indigo-100 p-3 rounded w-full"> 
               <img src="https://img.icons8.com/?size=160&id=ywULFSPkh4kI&format=png" alt="profile icon" className="w-6 h-6 mr-3" />
               <span className="font-medium whitespace-nowrap">
                 {/* Robust user name fallback */}
