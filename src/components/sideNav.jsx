@@ -5,6 +5,7 @@ import { useMsal } from "@azure/msal-react";
 function SideNav() {
   const [user, setUser] = useState(null);
   const [campus, setCampus] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('google_user') || localStorage.getItem('manual_user');
@@ -30,43 +31,111 @@ function SideNav() {
     } else {
       console.log("No active MSAL account — just cleared local storage.");
     }
+    setIsMobileMenuOpen(false);
   };
-  
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <nav className="w-full flex items-center p-3 bg-gray-100 border-b border-gray-300 shadow-sm">
-        <div class="flex space-x-9 ml-2">
-     <Link to="/profile" className="hover:bg-indigo-100 p-2 rounded">
-     <img
-              src="https://img.icons8.com/?size=160&id=ywULFSPkh4kI&format=png"
-              alt="cart"
-              className="w-4 h-4  mr-1"
-            />
-      <span className="text-sm font-medium">
-        {user ? `${user.fName || user.given_name || user.name} ${user.lName || ''}` : 'Guest'}
-      </span> </Link>
-      <Link to="/university-of-ilorin" className="hover:bg-indigo-100 p-2 rounded">
-      <img
-              src="https://img.icons8.com/?size=100&id=37190&format=png"
-              alt="cart"
-              className="w-4 h-4 mt-1 mr-1"
-            />
-      <span className="text-sm">{campus || 'No Campus'}</span></Link>
-      <Link to="/" className="hover:bg-indigo-100 p-2 rounded">
-      <img
-              src="https://img.icons8.com/?size=100&id=2797&format=png"
-              alt="cart"
-              className="w-4 h-4 mt-1 mr-1"
-            />Home</Link>
-      <Link to="/cart" className="hover:bg-indigo-100 p-2 rounded">
-      <img
-              src="https://img.icons8.com/?size=100&id=20629&format=png&color=000000"
-              alt="cart"
-              className="w-4 h-4 mt-1 mr-1"
-            />My Hostel</Link>
-            </div>
-      <button className="hover:bg-red-100 p-2 rounded text-red-600 ml-auto" 
-      onClick={handleLogout}>
-              Logout</button>
+    <nav className="w-full flex items-center p-3 bg-gray-100 border-b border-gray-300 shadow-sm relative z-10">
+      {/* Desktop Navigation Links */}
+      <div className="hidden md:flex flex-grow items-center justify-start space-x-6 lg:space-x-9 ml-2">
+        <Link to="/profile" className="flex items-center hover:bg-indigo-100 p-2 rounded">
+          <img
+            src="https://img.icons8.com/?size=160&id=ywULFSPkh4kI&format=png"
+            alt="profile icon"
+            className="w-4 h-4 mr-1"
+          />
+          <span className="text-sm font-medium whitespace-nowrap">
+            {user ? `${user.fName || user.given_name || user.name || ''} ${user.lName || ''}` : 'Guest'}
+          </span>
+        </Link>
+        <Link to="/university-of-ilorin" className="flex items-center hover:bg-indigo-100 p-2 rounded">
+          <img
+            src="https://img.icons8.com/?size=100&id=37190&format=png"
+            alt="campus icon"
+            className="w-4 h-4 mt-1 mr-1"
+          />
+          <span className="text-sm whitespace-nowrap">{campus || 'No Campus'}</span>
+        </Link>
+        <Link to="/" className="flex items-center hover:bg-indigo-100 p-2 rounded">
+          <img
+            src="https://img.icons8.com/?size=100&id=2797&format=png"
+            alt="home icon"
+            className="w-4 h-4 mt-1 mr-1"
+          />
+          <span className="text-sm whitespace-nowrap">Home</span>
+        </Link>
+        <Link to="/cart" className="flex items-center hover:bg-indigo-100 p-2 rounded">
+          <img
+            src="https://img.icons8.com/?size=100&id=20629&format=png&color=000000"
+            alt="my hostel icon"
+            className="w-4 h-4 mt-1 mr-1"
+          />
+          <span className="text-sm whitespace-nowrap">My Hostel</span>
+        </Link>
+      </div>
+
+      {/* Desktop Logout Button */}
+      <button
+        className="hidden md:block hover:bg-red-100 p-2 rounded text-red-600 ml-auto"
+        onClick={handleLogout}
+      >
+        Logout
+      </button>
+
+      {/* Mobile Hamburger Icon (visible on small screens) */}
+      <div className="md:hidden flex flex-grow justify-end">
+        <button onClick={toggleMobileMenu} className="p-2 rounded hover:bg-gray-200">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu (visible when toggled) */}
+      {isMobileMenuOpen && (
+        // Removed bg-opacity-95. Removed items-center justify-center. Added overflow-y-auto.
+        <div className="md:hidden fixed inset-0 bg-white z-20 flex flex-col p-4 overflow-y-auto">
+          {/* Close button - remains absolutely positioned relative to its parent (the menu div) */}
+          <button onClick={toggleMobileMenu} className="absolute top-4 right-4 p-2 rounded hover:bg-gray-200">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+          {/* Navigation links container for mobile */}
+          {/* Main content wrapper with padding from top to avoid close button collision, and horizontal padding */}
+          <div className="flex flex-col space-y-4 pt-16 pb-8 text-xl w-full px-4"> {/* Adjusted space-y, added px-4 */}
+            <Link onClick={toggleMobileMenu} to="/profile" className="flex items-center hover:bg-indigo-100 p-3 rounded w-full"> {/* w-full ensures it takes full width */}
+              <img src="https://img.icons8.com/?size=160&id=ywULFSPkh4kI&format=png" alt="profile icon" className="w-6 h-6 mr-3" />
+              <span className="font-medium whitespace-nowrap">
+                {/* Robust user name fallback */}
+                {user ? `${user.fName || user.given_name || user.name || ''} ${user.lName || ''}` : 'Guest'}
+              </span>
+            </Link>
+            <Link onClick={toggleMobileMenu} to="/university-of-ilorin" className="flex items-center hover:bg-indigo-100 p-3 rounded w-full">
+              <img src="https://img.icons8.com/?size=100&id=37190&format=png" alt="campus icon" className="w-6 h-6 mr-3" />
+              <span className="whitespace-nowrap">{campus || 'No Campus'}</span>
+            </Link>
+            <Link onClick={toggleMobileMenu} to="/" className="flex items-center hover:bg-indigo-100 p-3 rounded w-full">
+              <img src="https://img.icons8.com/?size=100&id=2797&format=png" alt="home icon" className="w-6 h-6 mr-3" />
+              <span className="whitespace-nowrap">Home</span>
+            </Link>
+            <Link onClick={toggleMobileMenu} to="/cart" className="flex items-center hover:bg-indigo-100 p-3 rounded w-full">
+              <img src="https://img.icons8.com/?size=100&id=20629&format=png&color=000000" alt="my hostel icon" className="w-6 h-6 mr-3" />
+              <span className="whitespace-nowrap">My Hostel</span>
+            </Link>
+            <button
+              className="hover:bg-red-100 p-3 rounded text-red-600 w-full mt-6"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
