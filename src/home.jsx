@@ -21,9 +21,9 @@ function Home() {
           <img
             src="https://img.icons8.com/?size=100&id=79387&format=png&color=000000"
             alt="graduation hat"
-            style={{ width: "12%", height: "auto", paddingRight: "5%" }}
+            style={{ width: "10%", height: "auto", paddingRight: "0" }}
           />
-          <div style={{ display: "flex", flexDirection: "column", width: "80%" }}>
+          <div style={{ display: "flex", flexDirection: "column", width: "auto" }}>
             <header>10+ Universities</header>
             <p>Supporting students across multiple universities nationwide with quality housing options.</p>
           </div>
@@ -32,9 +32,9 @@ function Home() {
           <img
             src="https://img.icons8.com/?size=100&id=8021&format=png&color=000000"
             alt="graduation hat"
-            style={{ width: "12%", height: "auto", paddingRight: "5%" }}
+            style={{ width: "10%", height: "auto", paddingRight: "0" }}
           />
-          <div style={{ display: "flex", flexDirection: "column", width: "80%" }}>
+          <div style={{ display: "flex", flexDirection: "column", width: "auto" }}>
             <header>Multiple Beds</header>
             <p>Choose from a variety of room options, from shared rooms to private suites.</p>
           </div>
@@ -43,9 +43,9 @@ function Home() {
           <img
             src="https://img.icons8.com/?size=100&id=7880&format=png&color=000000"
             alt="graduation hat"
-            style={{ width: "12%", height: "auto", paddingRight: "5%" }}
+            style={{ width: "10%", height: "auto", paddingRight: "0" }}
           />
-          <div style={{ display: "flex", flexDirection: "column", width: "80%" }}>
+          <div style={{ display: "flex", flexDirection: "column", width: "auto" }}>
             <header>Major Cities</header>
             <p>Find housing in Nigeria’s top student locations, close to your campus and city life.</p>
           </div>

@@ -1,47 +1,110 @@
-
 .App {
   text-align: center;
 }
 
-.openText{
-  padding-top: 1%;
+.openText {
+  padding-top: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
-.open1{
+.open1 {
   color: #000000;
-  font-size: 250%;
+  font-size: 2em;
+  margin-bottom: 0.5em;
 }
 
-.open2{
+.open2 {
   padding-bottom: 2%;
   color: #000000;
-  font-size: 150%;
+  font-size: 1em;
+  line-height: 1.5;
 }
 
-.cards{
+.cards {
   display: flex;
-  gap: 5%;
-  margin-left: 5%;
-  margin-right: 5%;
+  flex-direction: column; 
+  gap: 20px; 
+  margin: 0 5%; 
 }
 
-.card{
+.card {
   background-color: orange;
-  width: 90%;
+  width: auto; 
   display: flex;
+  flex-direction: column; 
   align-items: center;
-  padding: 5%;
+  padding: 5%; 
   font-size: 1em;
   line-height: 1.4em;
+  text-align: center; 
+  border-radius: 8px; 
 }
 
-.card header{
+.card img {
+  width: 25%; 
+  height: auto;
+  padding-right: 0; 
+  margin-bottom: 15px; 
+}
+
+.card div {
+  width: 95%; 
+}
+
+.card header {
   color: black;
   font-weight: bold;
-  font-size: 1.5em;
-  margin-bottom: 4%;
+  font-size: 1.3em; 
+  margin-bottom: 2%; 
 }
-/**/
+
+.card p {
+  font-size: 0.9em; 
+}
+
+@media (min-width: 768px) {
+  .openText {
+    padding-top: 1%;
+  }
+
+  .open1 {
+    font-size: 2.5em; 
+  }
+
+  .open2 {
+    font-size: 1.5em; 
+  }
+
+  .cards {
+    flex-direction: row;
+    gap: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .card {
+    width: 30%; 
+    flex-direction: row; 
+    text-align: left; 
+  }
+
+  .card img {
+    width: 12%; 
+    padding-right: 5%; 
+    margin-bottom: 0; 
+  }
+
+  .card div {
+    width: 80%; 
+  }
+
+  .card header {
+    font-size: 1.5em; 
+    margin-bottom: 4%; 
+  }
+}
+
 .general {
   position: fixed;
   top: 0;
@@ -52,7 +115,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(0, 0, 0, 0.767)
+  color: rgba(0, 0, 0, 0.767);
+  padding: 20px;
 }
 
 .general h2{
@@ -69,6 +133,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 10px;
 }
 
 .modal-content {
@@ -77,6 +142,7 @@
   border-radius: 8px;
   width: 400px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .close-btn {
