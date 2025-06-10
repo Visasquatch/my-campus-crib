@@ -23,7 +23,7 @@ function Home() {
             alt="graduation hat"
             style={{ width: "10%", height: "auto", paddingRight: "0" }}
           />
-          <div style={{ display: "flex", flexDirection: "column", width: "auto" }}>
+          <div style={{ display: "flex", flexDirection: "column", width: "auto", paddingLeft: "5%" }}>
             <header>10+ Universities</header>
             <p>Supporting students across multiple universities nationwide with quality housing options.</p>
           </div>
@@ -34,7 +34,7 @@ function Home() {
             alt="graduation hat"
             style={{ width: "10%", height: "auto", paddingRight: "0" }}
           />
-          <div style={{ display: "flex", flexDirection: "column", width: "auto" }}>
+          <div style={{ display: "flex", flexDirection: "column", width: "auto", paddingLeft: "5%" }}>
             <header>Multiple Beds</header>
             <p>Choose from a variety of room options, from shared rooms to private suites.</p>
           </div>
@@ -45,7 +45,7 @@ function Home() {
             alt="graduation hat"
             style={{ width: "10%", height: "auto", paddingRight: "0" }}
           />
-          <div style={{ display: "flex", flexDirection: "column", width: "auto" }}>
+          <div style={{ display: "flex", flexDirection: "column", width: "auto", paddingLeft: "5%" }}>
             <header>Major Cities</header>
             <p>Find housing in Nigeria’s top student locations, close to your campus and city life.</p>
           </div>
