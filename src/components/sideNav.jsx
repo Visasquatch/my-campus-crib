@@ -24,6 +24,8 @@ function SideNav() {
     localStorage.removeItem('google_token');
     localStorage.removeItem('manual_user');
     localStorage.removeItem('user_campus');
+    localStorage.removeItem('savedHostels');
+    localStorage.removeItem('bookedHostels');
     window.dispatchEvent(new Event('storage'));
     const account = instance.getActiveAccount();
     if (account) {

@@ -3,7 +3,6 @@ import React, { useState }  from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useAuth } from "../context/authContext";
-import { MdClose } from "react-icons/md";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import ForgotP from "../pages/forgotPassword";
 
@@ -21,7 +20,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
         password: formData.password
       });
       console.log(response.data);
-      localStorage.setItem('login_token', response.data.token);
+      localStorage.setItem('token', response.data.token);
       login();
       if (onLoginSuccess) onLoginSuccess(response.data);
       onClose();

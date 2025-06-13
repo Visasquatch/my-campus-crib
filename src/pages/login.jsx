@@ -22,7 +22,7 @@ const Login = ({ onClose, onLoginSuccess }) => {
         password: formData.password
       });
       console.log(response.data);
-      localStorage.setItem('login_token', response.data.token);
+      localStorage.setItem('token', response.data.token);
       login();
       if (onLoginSuccess) onLoginSuccess(response.data);
       onClose();

@@ -22,7 +22,7 @@ const HostelCart = ({ data }) => {
     return (
       <div className="bg-white p-5 rounded-xl shadow-sm">
          <Link to={slug}>
-          <img src={image} alt="Hostel Image" className="w-full h-80 object-cover object-top" />
+          <img src={image} alt="Hostel pic" className="w-full h-80 object-cover object-top" />
         </Link>
         <h2 className="text-2xl py-3 text-center font-medium">{name}</h2>
         <p>{description} </p>
