@@ -29,7 +29,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
   setLoading(true);
 
   const handler = window.PaystackPop.setup({
-    key: 'pk_test_e0cbb949947e1ddbbf1f88bf5d8a24221b973944',
+    key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
     email,
     amount: Number(amount) * 100,
     currency: 'NGN',
