@@ -51,5 +51,5 @@ jobs:
         with:
           app-name: 'my-campus-crib'
           slot-name: 'Production'
-          package: .
+          package: ./build
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EB6E1FE46B7E4892855A24DBF4F3FFBD }}
