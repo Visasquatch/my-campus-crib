@@ -27,7 +27,6 @@ const PaymentForm = ({ onClose, onSuccess }) => {
   }
 
   setLoading(true);
-console.log("Paystack Public Key:", process.env.REACT_APP_PAYSTACK_PUBLIC_KEY);
   const handler = window.PaystackPop.setup({
     key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
     email,
