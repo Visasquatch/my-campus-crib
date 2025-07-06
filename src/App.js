@@ -38,5 +38,6 @@ function App() {
   );
 }
 
+console.log("🔍 BACKEND URL:", process.env.REACT_APP_BACKEND_URL);
 
 export default App;
