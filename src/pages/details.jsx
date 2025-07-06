@@ -30,7 +30,6 @@ import LoginModal from "../components/loginModal";
 
 const Detail = () => {
     const { slug } = useParams();
-    console.log(slug); 
     const [detail, setDetail] = useState(null);
     const navigate = useNavigate();
     const [selectedRoomType, setSelectedRoomType] = useState(null);

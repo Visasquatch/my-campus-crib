@@ -6,7 +6,6 @@ import { book } from '../store/cart';
 
 const HostelCart = ({ data }) => {
     const carts = useSelector(store=>store.cart.items) ;
-    console.log(carts);
     const { id, name, image, description, slug, roomTypes } = data;
     const dispatch = useDispatch();
     const handleBooking = () => {
