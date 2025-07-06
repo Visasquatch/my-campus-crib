@@ -27,7 +27,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
   }
 
   setLoading(true);
-
+console.log("Paystack Public Key:", process.env.REACT_APP_PAYSTACK_PUBLIC_KEY);
   const handler = window.PaystackPop.setup({
     key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
     email,
@@ -36,6 +36,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
      firstname: firstName,
     lastname: lastName,
     callback: function(response) {
+    verifyPayment(response.reference);
       setLoading(false);
       alert('Payment successful! Reference: ' + response.reference);
       onSuccess();
@@ -50,7 +51,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
 
 const verifyPayment = async (reference) => {
   try {
-    const res = await fetch('http://localhost:5000/api/payment/verify-payment', {
+  const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payment/verify-payment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ reference }),

@@ -24,7 +24,7 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     const fullPhone = `${countryCode}${phone}`;
     const newUser = { fName, lName, phone: fullPhone, email, password, campus };    
     try {
-      const response = await axios.post('http://localhost:5000/api/v1/auth/register', newUser);
+      const response = await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/register', newUser);
       console.log(response.data);
         localStorage.setItem('manual_user', JSON.stringify(newUser));
         localStorage.setItem('user_campus', newUser.campus);

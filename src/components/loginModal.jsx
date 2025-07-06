@@ -15,7 +15,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
   if (!isOpen) return null;
     const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/v1/auth/login', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/login`, {
         email,
         password: formData.password
       });
