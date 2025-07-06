@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './payment.css';
-const PaymentForm = ({ onClose, onSuccess }) => {
+
+const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -18,64 +19,64 @@ const PaymentForm = ({ onClose, onSuccess }) => {
   }, []);
 
   const payWithPaystack = (e) => {
-  e.preventDefault();
-  setLoading(true);
-
-  if (!amount || amount <= 0) {
-    alert("Enter a valid amount please 🙏");
-    return;
-  }
-
-  setLoading(true);
-console.log("Paystack Public Key:", process.env.REACT_APP_PAYSTACK_PUBLIC_KEY);
-console.log("Backend URL:", process.env.REACT_APP_BACKEND_URL);
-  const handler = window.PaystackPop.setup({
-    key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
-    email,
-    amount: Number(amount) * 100,
-    currency: 'NGN',
-     firstname: firstName,
-    lastname: lastName,
-    callback: function(response) {
-    verifyPayment(response.reference);
-      setLoading(false);
-      alert('Payment successful! Reference: ' + response.reference);
-      onSuccess();
-    },
-    onClose: function() {
-      setLoading(false);
-      alert('Transaction was cancelled');
+    e.preventDefault();
+    if (!amount || amount <= 0) {
+      alert("Enter a valid amount please 🙏");
+      return;
     }
-  });
-  handler.openIframe();
-};
+    setLoading(true);
 
-const verifyPayment = async (reference) => {
-  try {
-  const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payment/verify-payment`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ reference }),
+    const handler = window.PaystackPop.setup({
+      key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
+      email,
+      amount: Number(amount) * 100,
+      currency: 'NGN',
+      firstname: firstName,
+      lastname: lastName,
+      callback: function (response) {
+        verifyPayment(response.reference);
+        setLoading(false);
+        alert('Payment successful! Reference: ' + response.reference);
+        onSuccess();
+      },
+      onClose: function () {
+        setLoading(false);
+        alert('Transaction was cancelled');
+      }
     });
+    handler.openIframe();
+  };
 
-    const data = await res.json();
+  const verifyPayment = async (reference) => {
+    try {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payment/verify-payment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ reference, hostel_id: hostelId }),
+      });
 
-   if (res.ok) {
-      alert('Payment verified successfully: ' + data.message);
-      onClose(); 
-      onSuccess();
-    } else {
-      alert('Verification failed: ' + data.message);
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
+
+      if (res.ok) {
+        alert('Payment verified successfully: ' + data.message);
+        onClose();
+        onSuccess();
+      } else {
+        alert('Verification failed: ' + (data.message || 'No message'));
+      }
+    } catch (error) {
+      alert('Error verifying payment: ' + error.message);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    alert('Error verifying payment: ' + error.message);
-  } finally {
-    setLoading(false); 
-  }
-};
-  
- return (
-   <div className="payment-container">
+  };
+
+  return (
+    <div className="payment-container">
       <form onSubmit={payWithPaystack}>
         <h1 className="mt-3 text-2xl font-semibold text-center text-gray-800 mb-4">
           Please fill this to make payment
@@ -95,7 +96,6 @@ const verifyPayment = async (reference) => {
           <label>Amount</label>
           <input
             type="number"
-            placeholder="Please fill the correct amount for your intended room option"
             required
             min="1"
             value={amount}

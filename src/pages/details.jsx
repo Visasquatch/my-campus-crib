@@ -140,7 +140,7 @@ const Detail = () => {
                             onSuccess={() => {
                                 setBookedHostels(prev => [...prev, detail.id]);
                                 setShowPaymentForm(false);
-                            }}
+                            }} hostelId={detail.id} 
                         />
                     </div>
                 </div>
