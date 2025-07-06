@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { useAuth } from "../context/authContext";
-import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import '../App.css';
@@ -13,7 +12,6 @@ const Login = ({ onClose, onLoginSuccess }) => {
   const [formData, setFormData] = useState({ password: "" });
   const [showForgotP, setShowForgotP] = useState(false);
   const { login } = useAuth();
-  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {

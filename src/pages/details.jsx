@@ -4,7 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useParams, useNavigate  } from "react-router-dom";
-import { hostels } from "./hostels";
+import { hostels as hostelData } from "./hostels";
 import phoneIcon from "../assets/images/phone.png";
 import emailIcon from "../assets/images/email.png";
 import kitchen from "../assets/images/kitchen.png";
@@ -38,11 +38,16 @@ const Detail = () => {
     const isSaved = detail ? savedHostels.includes(detail.id) : false;
     const [bookedHostels, setBookedHostels] = useState([]);
     const isBooked = detail ? bookedHostels.includes(detail.id) : false;
-    const currentIndex = hostels.findIndex(h => h.slug === slug);
     const [showPaymentForm, setShowPaymentForm] = useState(false);
     const { isLoggedIn } = useAuth(); 
     const [showLoginModal, setShowLoginModal] = useState(false);
+    const [hostels, setHostels] = useState([]);
 
+    useEffect(() => {
+    setHostels(hostelData);
+  }, []);
+
+  const currentIndex = hostels.findIndex(h => h.slug === slug);
 
     const handleNext = () => {
         if (currentIndex === -1) return;
