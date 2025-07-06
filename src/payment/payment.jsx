@@ -59,7 +59,8 @@ const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
       });
 
       const text = await res.text();
-      const data = text ? JSON.parse(text) : {};
+    console.log('Raw response:', text);
+    const data = text ? JSON.parse(text) : {};
 
       if (res.ok) {
         alert('Payment verified successfully: ' + data.message);

@@ -136,11 +136,12 @@ const Detail = () => {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"> 
                     <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md relative"> 
                         <PaymentForm
+                            hostelId={detail.id}
                             onClose={() => setShowPaymentForm(false)}
                             onSuccess={() => {
                                 setBookedHostels(prev => [...prev, detail.id]);
                                 setShowPaymentForm(false);
-                            }} hostelId={detail.id} 
+                            }}  
                         />
                     </div>
                 </div>
