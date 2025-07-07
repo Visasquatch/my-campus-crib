@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { FaFacebook } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode';
+import { useAuth } from "../context/authContext";
 import '../App.css';
 
 const clientId = '336853841874-iifgh60gkvfmaehnu00252rolgr24os2.apps.googleusercontent.com';
@@ -14,6 +15,7 @@ const Signup = ({ onClose, onSignupSuccess }) => {
   const [password, setPassword] = useState('');
   const [campus, setCampus] = useState('');
   const [showSignup] = useState(true);
+  const { login } = useAuth();
   const [countryCode, setCountryCode] = useState("+234");
   const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium";
   const handleSignup = async () => {
@@ -24,12 +26,20 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     const fullPhone = `${countryCode}${phone}`;
     const newUser = { fName, lName, phone: fullPhone, email, password, campus };    
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/register`, 
-        newUser);
+      const response = await axios.post(
+  `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/register`,
+  newUser,
+  {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+);
         console.log(response.data);
         localStorage.setItem('manual_user', JSON.stringify(newUser));
         localStorage.setItem('user_campus', newUser.campus);
         localStorage.setItem('isLoggedIn', 'true');
+        login();
 
       if (onSignupSuccess) onSignupSuccess(newUser);
       onClose();

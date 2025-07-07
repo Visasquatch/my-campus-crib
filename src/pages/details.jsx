@@ -87,7 +87,7 @@ const Detail = () => {
         if (!isBooked) {
             setShowPaymentForm(true);
         }
-    };
+    }; 
 
     useEffect(() => {
         const storedBookings = JSON.parse(localStorage.getItem('bookedHostels')) || [];

@@ -6,9 +6,19 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const storedStatus = localStorage.getItem('isLoggedIn') === 'true';
-    setIsLoggedIn(storedStatus);
-  }, []);
+  const storedStatus = localStorage.getItem('isLoggedIn') === 'true';
+  setIsLoggedIn(storedStatus);
+
+  const handleStorageChange = () => {
+    const updatedStatus = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(updatedStatus);
+  };
+
+  window.addEventListener('storage', handleStorageChange);
+  return () => {
+    window.removeEventListener('storage', handleStorageChange);
+  };
+}, []);
 
   const login = () => {
     setIsLoggedIn(true);
