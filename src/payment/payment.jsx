@@ -5,6 +5,7 @@ const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [hostelName, setHostelName] = useState("");
   const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +32,7 @@ const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
       email,
       amount: Number(amount) * 100,
       currency: 'NGN',
+      hostelName: hostelName,
       firstname: firstName,
       lastname: lastName,
       callback: function (response) {
@@ -97,10 +99,20 @@ const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
           <label>Amount</label>
           <input
             type="number"
+            placeholder="Please enter the right amount for hostel and room type desired"
             required
             min="1"
             value={amount}
             onChange={e => setAmount(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Hostel Name</label>
+          <input
+            type="text"
+            value={hostelName}
+            onChange={e => setHostelName(e.target.value)}
           />
         </div>
 
