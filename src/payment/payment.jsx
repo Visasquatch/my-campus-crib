@@ -55,7 +55,7 @@ const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem("token")}`
+          Authorization: `Bearer ${localStorage.getItem("token")}` 
         },
         body: JSON.stringify({ reference, hostel_id: hostelId, hostel_name: hostelName }),
       });
