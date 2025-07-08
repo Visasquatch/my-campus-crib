@@ -57,7 +57,7 @@ const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify({ reference, hostel_id: hostelId }),
+        body: JSON.stringify({ reference, hostel_id: hostelId, hostel_name: hostelName }),
       });
 
       const text = await res.text();
