@@ -32,26 +32,17 @@ function Header({ showNav, toggleNav, openLoginModal }) {
     };
   }, []);
 
-  const handleLoginSuccess = (userData, type = 'manual') => {
+  const handleLoginSuccess = (userData) => {
     console.log("Logged in user:", userData);
     setUser(userData);
-    if (type === 'google') {
     localStorage.setItem('google_user', JSON.stringify(userData));
-  } else {
-    localStorage.setItem('manual_user', JSON.stringify(userData));
-  }
     setShowLogin(false);
   };
-  const handleSignupSuccess = (userData, type = 'manual') => {
-  setUser(userData);
-  if (type === 'google') {
+  const handleSignupSuccess = (userData) => {
+    setUser(userData);
     localStorage.setItem('google_user', JSON.stringify(userData));
-  } else {
-    localStorage.setItem('manual_user', JSON.stringify(userData));
-  }
-  setShowSignup(false);
-};
-
+    setShowSignup(false);
+  };
 
   return (
     <header className="flex justify-between items-center">

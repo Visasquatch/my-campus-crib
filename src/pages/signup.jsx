@@ -42,8 +42,7 @@ const Signup = ({ onClose, onSignupSuccess }) => {
 
         localStorage.setItem('isLoggedIn', 'true');
         login();
-
-      if (onSignupSuccess) onSignupSuccess(newUser, 'manual');
+      if (onSignupSuccess) onSignupSuccess(newUser);
       onClose();
     } catch (error) {
       console.error("Signup failed", error.response?.data || error.message);
