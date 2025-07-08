@@ -36,12 +36,14 @@ const Signup = ({ onClose, onSignupSuccess }) => {
   }
 );
         console.log(response.data);
-        localStorage.setItem('manual_user', JSON.stringify(newUser));
-        localStorage.setItem('user_campus', newUser.campus);
+        localStorage.setItem('manual_user', JSON.stringify(response.data.user));
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user_campus', response.data.user.campus);
+
         localStorage.setItem('isLoggedIn', 'true');
         login();
 
-      if (onSignupSuccess) onSignupSuccess(newUser);
+      if (onSignupSuccess) onSignupSuccess(newUser, 'manual');
       onClose();
     } catch (error) {
       console.error("Signup failed", error.response?.data || error.message);
@@ -60,7 +62,7 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     localStorage.setItem('google_token', token);
     localStorage.setItem('google_user', JSON.stringify(decoded));
     
-    if (onSignupSuccess) onSignupSuccess(decoded); 
+    if (onSignupSuccess) onSignupSuccess(decoded, 'google');
     onClose(); 
   };
   const onFailure = () => {
