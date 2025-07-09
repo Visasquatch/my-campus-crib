@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { FaFacebook } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode';
 import { useAuth } from "../context/authContext";
 import '../App.css';
@@ -17,7 +16,6 @@ const Signup = ({ onClose, onSignupSuccess }) => {
   const [showSignup] = useState(true);
   const { login } = useAuth();
   const [countryCode, setCountryCode] = useState("+234");
-  const socialBtn = "w-full flex items-center justify-center gap-2 border py-2 rounded-lg mb-2 hover:bg-gray-100 text-sm font-medium";
   const handleSignup = async () => {
     if (!fName || !lName || !phone || !email || !password || !campus) {
       alert("Please fill out all fields.");
