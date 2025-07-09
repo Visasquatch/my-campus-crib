@@ -195,10 +195,6 @@ const Signup = ({ onClose, onSignupSuccess }) => {
                 isSignedIn={true}
               />
                       </GoogleOAuthProvider>
-
-        <button className= {socialBtn}>
-   <FaFacebook/>Continue with Facebook
-        </button>
     <button onClick={onClose} className="close-btn">
   ✖
 </button>
