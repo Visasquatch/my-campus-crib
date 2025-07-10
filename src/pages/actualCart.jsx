@@ -25,18 +25,20 @@ import '../components/header.css';
   }, []);
 
   return (
-    <div className="cartGeneral grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="cartGeneral grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gradient-to-br from-orange-100 to-white-200">
       {loading ? (
         <p className="text-center col-span-full text-gray-500">Loading your booked hostels...</p>
       ) : myHostels.length > 0 ? (
         myHostels.map((hostel, index) => (
           <div key={index} className="bg-white p-5 rounded-xl shadow-sm">
-            <h2 className="text-2xl py-2 font-medium">{hostel.name}</h2>
+            <h2 className="text-2xl py-2 font-medium">
+              {hostel.name} <img
+              src="https://img.icons8.com/?size=100&id=20629&format=png&color=000000"
+              alt="cart"
+              className="w-8"
+            /></h2>
             <p className="text-gray-600 mb-2">{hostel.location}</p>
-            <p className="text-lg font-semibold">₦{hostel.price}</p>
-           {/* <button className="mt-4 w-full bg-orange-400 text-white py-2 rounded hover:bg-orange-500">
-              View Details
-            </button> */}
+          {/*  <p className="text-lg font-semibold">From ₦{hostel.price}</p> */}
           </div>
         ))
       ) : (

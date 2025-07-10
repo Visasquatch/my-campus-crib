@@ -137,8 +137,8 @@ const Signup = ({ onClose, onSignupSuccess }) => {
   value={campus}
   onChange={(e) => setCampus(e.target.value)}
     className="w-full border p-2 rounded">
-    <option value="University of Ilorin">University of Ilorin</option>
   <option value="University of Lagos">University of Lagos</option>
+  <option value="University of Ilorin">University of Ilorin</option>
   <option value="University of Ibadan">University of Ibadan</option>
   <option value="University of Abuja">University of Abuja</option>
   <option value="University of Benin">University of Benin</option>

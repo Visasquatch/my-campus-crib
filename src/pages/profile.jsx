@@ -13,18 +13,26 @@ function Profile() {
   }, []);
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-4">Your Profile</h1>
-
-      <span className="text-sm font-medium">
-        {user ? `${user.fName || user.given_name || user.name} ${user.lName || ''}` : 'Guest'}
-      </span>
-
-      <p>Email: {user ? user.email : 'No email available'}</p>
-
-      <span className="text-sm">{campus || 'No Campus'}</span><br/>
-
-      <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Edit Profile</button>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 to-white-200 p-4 sm:p-8">
+      <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 w-full max-w-md transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center text-center">
+        <h1 className="text-4xl font-extrabold text-gray-800 mb-6">Your Profile</h1>
+        <div className="space-y-3 mb-6 w-full">
+          <p className="text-xl font-semibold text-gray-700">
+            {user ? `${user.fName || user.given_name || user.name} ${user.lName || ''}` : 'Guest'}
+          </p>
+          <p className="text-md text-gray-600">
+            Email: <span className="font-medium">{user ? user.email : 'No email available'}</span>
+          </p>
+          <p className="text-md text-gray-600">
+            Campus: <span className="font-medium">{campus || 'No Campus Specified'}</span>
+          </p>
+        </div>
+        <button
+          className="mt-6 px-6 py-3 bg-orange-500 text-white font-semibold rounded-full shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75 transition duration-200 ease-in-out transform hover:-translate-y-1"
+        >
+          Edit Profile
+        </button>
+      </div>
     </div>
   );
 }

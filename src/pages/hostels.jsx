@@ -76,7 +76,7 @@ export const hostels = [
     gender: "male",
     rating: 4,
     price: 190,
-    image: uillogo,
+    image: sanusi2,
     images: [ sanusi2, sanusi3, sanusi4,],                      
     description: "Nice male hostel",
     contact: "+234 704 634 2937",
