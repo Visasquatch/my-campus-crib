@@ -38,7 +38,6 @@ import '../components/header.css';
               className="w-8"
             /></h2>
             <p className="text-gray-600 mb-2">{hostel.location}</p>
-          {/*  <p className="text-lg font-semibold">From ₦{hostel.price}</p> */}
           </div>
         ))
       ) : (
