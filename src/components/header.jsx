@@ -1,45 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
-// import { useSelector } from 'react-redux';
 import Login from '../pages/login';
 import Signup from '../pages/signup';
 
-function Header({ showNav, toggleNav, openLoginModal }) {
-  const [user, setUser] = useState(null);
-//  const [campus, setCampus] = useState('');
+function Header({ showNav, toggleNav, openLoginModal, user }) {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
- // const carts = useSelector(store => store.cart.hostels);
-
-  useEffect(() => {
-    const loadUser = () => {
-      const storedUser = localStorage.getItem('google_user') || localStorage.getItem('manual_user');
- //     const storedCampus = localStorage.getItem('user_campus');
-    
-      if (storedUser) setUser(JSON.parse(storedUser));
-      else setUser(null); 
-  
-//      if (storedCampus) setCampus(storedCampus);
-    };
-  
-    loadUser();
-  
-    window.addEventListener('storage', loadUser);
-  
-    return () => {
-      window.removeEventListener('storage', loadUser);
-    };
-  }, []);
 
   const handleLoginSuccess = (userData) => {
     console.log("Logged in user:", userData);
-    setUser(userData);
     localStorage.setItem('google_user', JSON.stringify(userData));
     setShowLogin(false);
   };
   const handleSignupSuccess = (userData) => {
-    setUser(userData);
     localStorage.setItem('google_user', JSON.stringify(userData));
     setShowSignup(false);
   };
@@ -58,7 +32,8 @@ function Header({ showNav, toggleNav, openLoginModal }) {
         {user ? (
           <>
         <button onClick={toggleNav} className="flex items-center space-x-2 user-name-button">
-        <span className="text-xl">Hi, {user.fName || user.name || user.given_name || user.email}</span>
+        <span className="text-xl"
+        >Hi, {user?.fName || user?.name || user?.given_name || user?.email}</span>
   <svg className={`w-4 h-4 transform transition-transform duration-200 ${showNav ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
   </svg>

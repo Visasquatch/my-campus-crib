@@ -2,23 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMsal } from "@azure/msal-react";
 
-function SideNav() {
-  const [user, setUser] = useState(null);
+function SideNav({ user }) {
   const [campus, setCampus] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('google_user') || localStorage.getItem('manual_user');
     const storedCampus = localStorage.getItem('user_campus');
-
-    if (storedUser) setUser(JSON.parse(storedUser));
     if (storedCampus) setCampus(storedCampus);
   }, []);
 
   const { instance } = useMsal();
 
   const handleLogout = () => {
-    setUser(null);
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('google_user');
     localStorage.removeItem('google_token');
@@ -39,6 +34,12 @@ function SideNav() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  const [userRole, setUserRole] = useState('');
+
+useEffect(() => {
+  const role = localStorage.getItem('user_role');
+  setUserRole(role);
+}, []);
 
   return (
     <nav className="w-full flex items-center p-3 bg-gray-100 border-b border-gray-300 shadow-sm relative z-10">
@@ -78,6 +79,12 @@ function SideNav() {
           <span className="text-sm whitespace-nowrap">My Hostel</span>
         </Link>
       </div>
+      {userRole === 'admin' && (
+  <Link to="/admin-dashboard" className="flex items-center hover:bg-indigo-100 p-2 rounded">
+    <img src="https://img.icons8.com/?size=160&id=83280&format=png" alt="admin icon" className="w-4 h-4 mr-1" />
+    <span className="text-sm whitespace-nowrap">Admin Dashboard</span>
+  </Link>
+)}
       <button
         className="hidden md:block hover:bg-red-100 p-2 rounded text-red-600 ml-auto"
         onClick={handleLogout}
@@ -102,7 +109,6 @@ function SideNav() {
             <Link onClick={toggleMobileMenu} to="/profile" className="flex items-center hover:bg-indigo-100 p-3 rounded w-full"> 
               <img src="https://img.icons8.com/?size=160&id=ywULFSPkh4kI&format=png" alt="profile icon" className="w-6 h-6 mr-3" />
               <span className="font-medium whitespace-nowrap">
-                {/* Robust user name fallback */}
                 {user ? `${user.fName || user.given_name || user.name || ''} ${user.lName || ''}` : 'Guest'}
               </span>
             </Link>

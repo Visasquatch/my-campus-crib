@@ -20,13 +20,24 @@ const Login = ({ onClose, onLoginSuccess }) => {
         password: formData.password
       });
       console.log(response.data);
-      localStorage.setItem('token', response.data.token);
-      login();
-      if (onLoginSuccess) onLoginSuccess(response.data);
-      onClose();
-    } catch (error) {
-      console.error("Login failed", error.response?.data);
-      alert(error.response?.data?.message || "Login failed.");
+
+    const { token, user } = response.data;
+    localStorage.setItem('token', token);
+    localStorage.setItem('manual_user', JSON.stringify(user));
+    localStorage.setItem('current_user', JSON.stringify(response.data.user));
+    window.dispatchEvent(new Event('storage'));
+    localStorage.setItem('user_campus', user.campus);
+    localStorage.setItem('user_role', user.role);
+    localStorage.setItem('isLoggedIn', 'true');
+
+    login(user.role); 
+
+    if (onLoginSuccess) onLoginSuccess(response.data);
+    onClose();
+
+  } catch (error) {
+    console.error("Login failed", error.response?.data);
+    alert(error.response?.data?.message || "Login failed.");
     }
   };
   

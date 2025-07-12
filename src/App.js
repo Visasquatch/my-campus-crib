@@ -13,6 +13,8 @@ import Profile from './pages/profile.jsx';
 import { PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 import msalConfig from "./authConfig";
+import Dashboard from './pages/adminPage.jsx';
+import AdminRoute from './components/adminRoute.jsx';
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
@@ -31,6 +33,7 @@ function App() {
             <Route path="/university-of-ilorin/:slug" element={<Detail />} />
             <Route path="payment" element={<PaymentForm />} />
             <Route path="/forgotPassword" element={<ForgotP />} />
+            <Route path="/admin-dashboard" element={<AdminRoute><Dashboard /></AdminRoute>} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -33,20 +33,24 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     }
   }
 );
-        console.log(response.data);
-        localStorage.setItem('manual_user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user_campus', response.data.user.campus);
+    console.log(response.data);
+    const { token, user } = response.data;
+    localStorage.setItem('token', token);
+    localStorage.setItem('manual_user', JSON.stringify(user));
+    localStorage.setItem('user_role', user.role);
+    localStorage.setItem('user_campus', user.campus);
+    localStorage.setItem('isLoggedIn', 'true');
 
-        localStorage.setItem('isLoggedIn', 'true');
-        login();
-      if (onSignupSuccess) onSignupSuccess(newUser);
-      onClose();
-    } catch (error) {
-      console.error("Signup failed", error.response?.data || error.message);
-      alert(error.response?.data?.message || "Signup failed. Please try again.");
-    }
-  };
+    login(user.role);  
+
+    if (onSignupSuccess) onSignupSuccess(user);
+    onClose();
+
+  } catch (error) {
+    console.error("Signup failed", error.response?.data || error.message);
+    alert(error.response?.data?.message || "Signup failed. Please try again.");
+  }
+};
    
  const onSuccess = (credentialResponse) => {
     const token = credentialResponse?.credential;
