@@ -3,16 +3,9 @@ import { Link } from 'react-router-dom';
 import { useMsal } from "@azure/msal-react";
 
 function SideNav({ user }) {
-  const [campus, setCampus] = useState('');
+  const campus = user?.campus || localStorage.getItem('user_campus');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const storedCampus = localStorage.getItem('user_campus');
-    if (storedCampus) setCampus(storedCampus);
-  }, []);
-
   const { instance } = useMsal();
-
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('google_user');
