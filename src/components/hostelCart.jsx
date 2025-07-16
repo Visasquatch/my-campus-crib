@@ -27,7 +27,7 @@ const HostelCart = ({ data }) => {
         <span className="text-2xl font-medium">From: ₦{price},000</span>
         <button className="bg-gray-300 p-2 rounded-md text-sm hover:bg-gray-400 flex gap-4" onClick={handleBooking}>
             <img src={bookIcon} alt="bookIcon" className="w-5"/>
-            Book
+            Available
         </button></div>
       </div>
     );
