@@ -37,6 +37,8 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     const { token, user } = response.data;
     localStorage.setItem('token', token);
     localStorage.setItem('manual_user', JSON.stringify(user));
+    localStorage.setItem('current_user', JSON.stringify(response.data.user));
+    window.dispatchEvent(new Event('storage'));
     localStorage.setItem('user_role', user.role);
     localStorage.setItem('user_campus', user.campus);
     localStorage.setItem('isLoggedIn', 'true');
@@ -60,11 +62,16 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     }
     const decoded = jwtDecode(token);
     console.log("SIGNUP SUCCESS! Current user: ", decoded);
+    decoded.campus = campus; 
+    decoded.role = 'student';
     localStorage.setItem('google_token', token);
     localStorage.setItem('google_user', JSON.stringify(decoded));
     localStorage.setItem('current_user', JSON.stringify(decoded)); 
-    localStorage.setItem('user_role');
-    
+    localStorage.setItem('user_campus', campus);
+    localStorage.setItem('user_role', 'student');
+    localStorage.setItem('isLoggedIn', 'true');
+    window.dispatchEvent(new Event('storage'));
+    Signup()
     if (onSignupSuccess) onSignupSuccess(decoded, 'google');
     onClose(); 
   };
