@@ -51,6 +51,13 @@ const PaymentForm = ({ onClose, onSuccess, hostelId }) => {
 
   const verifyPayment = async (reference) => {
     try {
+      const token =
+      localStorage.getItem("token") || localStorage.getItem("google_token");
+
+    if (!token) {
+      alert("You are not authenticated. Please log in again.");
+      return;
+    }
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payment/verify-payment`, {
         method: 'POST',
         headers: {
