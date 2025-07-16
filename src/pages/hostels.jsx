@@ -32,6 +32,7 @@ import hawa2 from "../assets/images/Hawa 2.png";
 import zapel from "../assets/images/Zapel.png";
 import zapel2 from "../assets/images/Zapel 2.png";
 import zapel3 from "../assets/images/Zapel 3.png";
+import zapel4 from "../assets/images/Zapel 4.jpg"
 import eq from "../assets/images/Easy and Quiet.png";
 import pyramid from "../assets/images/Pyramid.png";
 import pyramid2 from "../assets/images/Pyramid 2.png";
@@ -46,6 +47,9 @@ import atlantic from "../assets/images/Atlantic.png";
 import atlantic2 from "../assets/images/Atlantic 2.png";
 import atlantic3 from "../assets/images/Atlantic 3.png";
 import atlantic4 from "../assets/images/Atlantic 4.png";
+import scientific from "../assets/images/Scientific.jpg"
+import scientific2 from "../assets/images/Scientific 2.jpg"
+import scientific3 from "../assets/images/Scientific 3.jpg"
 import uillogo from "../assets/images/UIL Logo.png"
 
 export const hostels = [
@@ -223,7 +227,7 @@ export const hostels = [
     gender: "male",
     rating: 5,
     price: 195,
-    image: uillogo,
+    image: zapel4,
     images: [zapel, zapel2, zapel3,],
     alt: "none",
     description: "Nice male hostel",
@@ -374,8 +378,8 @@ export const hostels = [
     gender: "female",
     rating: 3,
     price: 145,
-    image: uillogo,
-    images: [uillogo],
+    image: scientific3,
+    images: [scientific, scientific2],
     description: "Nice female hostel",
     contact: "+234 917 394 9274",
     email: "scientific_hostel@yahoo.com",
