@@ -40,5 +40,4 @@ function App() {
     </MsalProvider>
   );
 }
-console.log(process.env.REACT_APP_BACKEND_URL)
 export default App;

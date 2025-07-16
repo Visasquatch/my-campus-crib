@@ -62,6 +62,8 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     console.log("SIGNUP SUCCESS! Current user: ", decoded);
     localStorage.setItem('google_token', token);
     localStorage.setItem('google_user', JSON.stringify(decoded));
+    localStorage.setItem('current_user', JSON.stringify(decoded)); 
+    localStorage.setItem('user_role');
     
     if (onSignupSuccess) onSignupSuccess(decoded, 'google');
     onClose(); 

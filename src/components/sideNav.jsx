@@ -17,6 +17,7 @@ function SideNav({ user }) {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('google_user');
     localStorage.removeItem('google_token');
+    localStorage.removeItem('current_user');
     localStorage.removeItem('manual_user');
     localStorage.removeItem('user_campus');
     localStorage.removeItem('savedHostels');

@@ -51,7 +51,11 @@ const Login = ({ onClose, onLoginSuccess }) => {
     console.log("LOGIN SUCCESS! Current user: ", decoded);
     localStorage.setItem('google_token', token);
     localStorage.setItem('google_user', JSON.stringify(decoded));
+    localStorage.setItem('current_user', JSON.stringify(decoded)); 
     localStorage.setItem('user_campus', decoded.campus);
+    localStorage.setItem('user_role', 'student');
+    localStorage.setItem('isLoggedIn', 'true');
+    window.dispatchEvent(new Event('storage'));
     login(); 
     if (onLoginSuccess) onLoginSuccess(decoded);
     onClose();
