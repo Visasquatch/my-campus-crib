@@ -21,7 +21,7 @@ import shuttle from "../assets/images/shuttle.png";
 import solar from "../assets/images/solar.png";
 import buttery from "../assets/images/shop.png";
 import heartOutline from "../assets/images/heart outline.png"
-import starOutline from "../assets/images/star Outline.png"
+import starOutline from "../assets/images/star outline.png"
 import star from "../assets/images/star.png"
 import heart from "../assets/images/heart.png"
 import PaymentForm from "../payment/payment";
@@ -148,14 +148,14 @@ const Detail = () => {
             <h2 className="text-2xl sm:text-3xl text-center">Hostel Details</h2>
             <button
                 onClick={() => navigate('/university-of-ilorin')}
-                className="bg-[#FFA500] p-2 rounded-lg ml-2 sm:ml-5 hover:bg-orange-400 mt-4" 
+                className="bg-[#301a6f] p-2 rounded-lg ml-2 sm:ml-5 hover:bg-[#1c285e] mt-4 text-white" 
             >
                 ⬅ Back
             </button>
 
-            <div className="flex justify-between mt-4 px-2 sm:px-5">
-                <button onClick={handlePrev} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400">⬅ Prev </button>
-                <button onClick={handleNext} className="bg-[#FFA500] p-2 rounded-lg hover:bg-orange-400"> Next ➡</button>
+            <div className="flex justify-between mt-4 px-2 sm:px-5 text-white">
+                <button onClick={handlePrev} className="bg-[#301a6f] p-2 rounded-lg hover:bg-[#1c285e]">⬅ Prev </button>
+                <button onClick={handleNext} className="bg-[#301a6f] p-2 rounded-lg hover:bg-[#1c285e]"> Next ➡</button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5 sm:mt-6 md:gap-8 lg:gap-10">
                 <div className="mx-2 sm:mx-5 md:mx-0">
@@ -223,7 +223,7 @@ const Detail = () => {
                                     const selected = detail.roomTypes.find(rt => rt.type === e.target.value);
                                     setSelectedRoomType(selected);
                                 }}
-                                className="border p-2 rounded-lg bg-[#FFA500] w-full sm:w-auto"
+                                className="border p-2 rounded-lg bg-[#301a6f] w-full sm:w-auto text-white"
                             >
                                 {detail.roomTypes.map((room, index) => (
                                     <option key={index} value={room.type}>
@@ -243,7 +243,7 @@ const Detail = () => {
                     <div className="flex gap-4 sm:gap-5 mb-4"> 
                         <button
                             className={`flex items-center gap-2 px-6 py-2 rounded-xl shadow-lg text-white text-base sm:text-lg ${ 
-                                isBooked ? 'bg-gray-400 cursor-not-allowed' : 'bg-orange-400 hover:bg-orange-600'
+                                isBooked ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#301a6f] hover:bg-[#1c285e]'
                             }`}
                             onClick={handleBookClick}
                             disabled={!isLoggedIn || isBooked}
@@ -274,7 +274,7 @@ const Detail = () => {
                             <p className="text-sm sm:text-base">{detail.email}</p>
                         </div>
                     </div>
-                    <div className="bg-[#FFA500] bg-opacity-20">
+                    <div className="bg-[#301a6f] bg-opacity-20">
                          <h1 className="font-bold mb-3 text-xl sm:text-2xl mt-4 ml-4">Available:</h1>
                     <div className="flex flex-wrap gap-3 sm:gap-5 ml-4"> 
                         {detail.amenities?.map((amenity, index) => (

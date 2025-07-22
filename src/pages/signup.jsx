@@ -190,7 +190,7 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     onChange={(e) => setPassword(e.target.value)}
   className="w-full border p-2 rounded"/>
 </div>
-<button onClick={handleSignup} className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400">
+<button onClick={handleSignup} className="w-full bg-[#1f2c75] text-white py-2 rounded font-semibold hover:bg-[#1c285e]">
   Continue
 </button>
 

@@ -84,7 +84,7 @@ const Dashboard = () => {
             />
             <button
               onClick={handleCreateHostel}
-              className="bg-orange-400 text-white px-4 py-2 rounded"
+              className="bg-[#1f2c75]-400 text-white px-4 py-2 rounded"
             >
               Add Hostel
             </button>

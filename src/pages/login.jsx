@@ -94,11 +94,8 @@ const Login = ({ onClose, onLoginSuccess }) => {
 </div>
 <button
   onClick={handleLogin}
-  className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400"
-> Continue
+  className="w-full bg-[#1f2c75] text-white py-2 rounded font-semibold hover:bg-[#1c285e]"> Continue
 </button>
-
-
               <button
                 onClick={() => setShowForgotP(true)}
                 className="forgotP-button flex items-center justify-center text-sm w-full my-3"

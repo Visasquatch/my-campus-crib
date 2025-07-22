@@ -1,7 +1,7 @@
 header {
   font-size: calc(1em + 2vmin); 
   color: white;
-  background-color: orange;
+  background-color: #301a6f;
   min-height: auto;
   display: flex;
 }
@@ -42,9 +42,9 @@ a {
 
 .search-bar .search-icon {
   margin-left: 2%;
-  color: #666;
+  color:  #301a6f;
   cursor: pointer;
-  background-color: rgba(255, 166, 0, 0.521);
+  background-color:  #311a6f66;
   border-radius: 50%;
   padding: 0.8em;
   display: flex;
@@ -95,7 +95,7 @@ a {
 }
 
 .user-name-button {
-  background-color: rgba(255, 166, 0, 0.521);
+  background-color: #1c0f3f60;
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
@@ -103,5 +103,5 @@ a {
 }
 
 .user-name-button:hover {
-  background-color: rgba(211, 138, 3, 0.521);
+  background-color: #402393;
 }
