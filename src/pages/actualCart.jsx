@@ -25,7 +25,7 @@ import '../components/header.css';
   }, []);
 
   return (
-    <div className="cartGeneral grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gradient-to-br from-orange-100 to-white-200">
+    <div className="cartGeneral grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gradient-to-br from-blue-100 to-white-200">
       {loading ? (
         <p className="text-center col-span-full text-gray-500">Loading your booked hostels...</p>
       ) : myHostels.length > 0 ? (
