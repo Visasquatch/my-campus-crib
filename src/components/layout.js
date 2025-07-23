@@ -39,7 +39,6 @@ const Layout = () => {
       <main className="px-4">
         <Outlet />
       </main>
-
       <LoginModal 
         isOpen={isLoginOpen} 
         onClose={() => setIsLoginOpen(false)} 

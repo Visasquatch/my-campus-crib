@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './header.css';
-
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredUniversities, setFilteredUniversities] = useState([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
   const universities = [
     { name: "University of Ilorin", route: "/university-of-ilorin" },
     { name: "University of Lagos", route: "/university-of-lagos" },
@@ -67,5 +65,4 @@ const SearchBar = () => {
     </div>
   );
 };
-
 export default SearchBar;

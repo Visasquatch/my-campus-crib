@@ -3,7 +3,6 @@ import { hostels } from "./hostels.jsx"
 import HostelCart from '../components/hostelCart.jsx';
 import uilLogo from "../assets/images/UIL Logo.png";
 
-
 const UIL = () => {
     const [selectedGender, setSelectedGender] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");

@@ -54,7 +54,7 @@ const Dashboard = () => {
   return (
     <div className="p-6">
       {userRole !== 'admin' ? (
-        <div className="p-4">🚫 You don’t have access to this page.</div>
+        <div className="p-4">You don’t have access to this page.</div>
       ) : (
         <>
           <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
@@ -117,5 +117,4 @@ const Dashboard = () => {
     </div>
   );
 };
-
 export default Dashboard;

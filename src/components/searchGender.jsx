@@ -10,8 +10,6 @@ const filteredHostels = hostels.filter(
       (selectedGender === "all" || hostel.gender.toLowerCase() === selectedGender) &&
       hostel.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
-
 return (
   <div>
     <div className="flex items-center gap-4 mt-4">

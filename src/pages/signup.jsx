@@ -193,9 +193,6 @@ const Signup = ({ onClose, onSignupSuccess }) => {
 <button onClick={handleSignup} className="w-full bg-[#1f2c75] text-white py-2 rounded font-semibold hover:bg-[#1c285e]">
   Continue
 </button>
-
-
-
         <p className="text-center my-3 text-gray-500 text-sm">or</p>
       
         <GoogleOAuthProvider clientId={clientId}>
@@ -209,12 +206,9 @@ const Signup = ({ onClose, onSignupSuccess }) => {
     <button onClick={onClose} className="close-btn">
   ✖
 </button>
-
-
       </div></div>
     </div>
   )
 );
 };
-
 export default Signup;

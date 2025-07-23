@@ -48,5 +48,4 @@ import '../components/header.css';
     </div>
   );
 };
-
 export default ActualCart;

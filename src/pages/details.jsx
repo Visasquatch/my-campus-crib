@@ -21,12 +21,11 @@ import shuttle from "../assets/images/shuttle.png";
 import solar from "../assets/images/solar.png";
 import buttery from "../assets/images/shop.png";
 import heartOutline from "../assets/images/heart outline.png"
-import starOutline from "../assets/images/star outline.png"
+import starOutline from "../assets/images/star Outline.png"
 import star from "../assets/images/star.png"
 import heart from "../assets/images/heart.png"
 import PaymentForm from "../payment/payment";
 import LoginModal from "../components/loginModal";
-
 
 const Detail = () => {
     const { slug } = useParams();
@@ -181,8 +180,6 @@ const Detail = () => {
                             </div>
                         ))}
                     </Carousel>
-
-          
                 </div>
                 <div className="flex flex-col gap-4 sm:gap-5 mx-2 sm:mx-5 md:mx-0 pr-0 md:pr-5">
                     <div className="relative flex items-center justify-between">

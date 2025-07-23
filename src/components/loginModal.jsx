@@ -1,5 +1,4 @@
 import React, { useState }  from 'react';
-//import './LoginModal.css';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useAuth } from "../context/authContext";
@@ -82,8 +81,6 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
   className="w-full bg-orange-300 text-white py-2 rounded font-semibold hover:bg-orange-400"
 > Continue
 </button>
-
-
               <button
                 onClick={() => setShowForgotP(true)}
                 className="forgotP-button flex items-center justify-center text-sm w-full my-3"
@@ -109,6 +106,5 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
       </div>
     </div>
   );
-};
-
+}
 export default LoginModal;

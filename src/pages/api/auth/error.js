@@ -1,4 +1,3 @@
-// pages/auth/error.js
 import { useRouter } from 'next/router';
 
 const ErrorPage = () => {
